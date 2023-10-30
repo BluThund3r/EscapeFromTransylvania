@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate() 
     {
-        LookAtMouse();
+        // LookAtMouse();
         MovePlayer();
     }
 
@@ -38,5 +38,20 @@ public class Player : MonoBehaviour
     private Vector3 GetInputForMovement()
     {
         return new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+    }
+
+    void Update(){
+        Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        Vector3 mousePosition = Input.mousePosition;
+
+        Vector3 mouseDirection = mousePosition - screenCenter;
+        mouseDirection.Normalize();
+
+        float angle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0, -angle, 0);
+
+
+
     }
 }
