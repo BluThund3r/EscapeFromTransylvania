@@ -5,17 +5,22 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Rigidbody rb;
-    private float movementSpeed;
+    private float _movementSpeed;
+    private float _sprintSpeed;
 
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
-        movementSpeed = 5f;
+        _movementSpeed = 5f;
+        _sprintSpeed = 10f;
     }
 
     void FixedUpdate() 
     {
-        
         MovePlayer();
+    }
+
+    void Update(){
+        LookAtMouse();
     }
 
     private void LookAtMouse()
@@ -33,7 +38,15 @@ public class Player : MonoBehaviour
     
     private void MovePlayer()
     {
-        rb.MovePosition(rb.position + GetInputForMovement() * movementSpeed * Time.fixedDeltaTime);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            rb.MovePosition(rb.position + GetInputForMovement() * _sprintSpeed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            rb.MovePosition(rb.position + GetInputForMovement() * _movementSpeed * Time.fixedDeltaTime);
+        }
+        
     }
 
     private Vector3 GetInputForMovement()
@@ -41,7 +54,5 @@ public class Player : MonoBehaviour
         return new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
     }
 
-    void Update(){
-        LookAtMouse();
-    }
+    
 }
