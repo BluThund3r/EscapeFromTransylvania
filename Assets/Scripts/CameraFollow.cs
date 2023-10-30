@@ -5,9 +5,6 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField]
     public Transform target; // Assign your player's transform to this field.
-
-    public float smoothSpeed = 5.0f; // Adjust the smoothness of camera follow.
-
     private Vector3 offset;
 
     private void Start()

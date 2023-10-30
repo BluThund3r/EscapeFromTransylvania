@@ -14,20 +14,21 @@ public class Player : MonoBehaviour
 
     void FixedUpdate() 
     {
-        // LookAtMouse();
+        
         MovePlayer();
     }
 
     private void LookAtMouse()
     {
-        Vector3 mouseDirection = GetMouseDirection();
-        transform.rotation = Quaternion.LookRotation(mouseDirection - transform.position);
-    }
+        Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        Vector3 mousePosition = Input.mousePosition;
 
-    private Vector3 GetMouseDirection() {
-        Vector3 mouseDirection = Input.mousePosition;
-        mouseDirection.z = 7.5f;
-        return Camera.main.ScreenToWorldPoint(mouseDirection);
+        Vector3 mouseDirection = mousePosition - screenCenter;
+        mouseDirection.Normalize();
+
+        float angle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0, -angle, 0);
     }
     
     private void MovePlayer()
@@ -41,17 +42,6 @@ public class Player : MonoBehaviour
     }
 
     void Update(){
-        Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-        Vector3 mousePosition = Input.mousePosition;
-
-        Vector3 mouseDirection = mousePosition - screenCenter;
-        mouseDirection.Normalize();
-
-        float angle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(0, -angle, 0);
-
-
-
+        LookAtMouse();
     }
 }
