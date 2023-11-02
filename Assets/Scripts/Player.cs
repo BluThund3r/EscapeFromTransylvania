@@ -1,19 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class Player : MonoBehaviour
 {
     private Rigidbody rb;
     private float _movementSpeed;
     private float _sprintSpeed;
+    [SerializeField] private HealthBar _healthBar;
+    private float _maxHealth;
+    private float _currentHealth;
 
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
         _movementSpeed = 5f;
         _sprintSpeed = 10f;
+        _maxHealth = 100f;
+        _currentHealth = _maxHealth;
+        _healthBar.SetMaxHealth(_maxHealth);
     }
-
     void FixedUpdate() 
     {
         MovePlayer();
@@ -21,6 +27,15 @@ public class Player : MonoBehaviour
 
     void Update(){
         LookAtMouse();
+        if(Input.GetKeyDown(KeyCode.Space)){
+            TakeDamage(20f);
+        }
+    }
+
+    private void TakeDamage(float damage)
+    {
+        _currentHealth -= damage;
+        _healthBar.SetHealth(_currentHealth);
     }
 
     private void LookAtMouse()
