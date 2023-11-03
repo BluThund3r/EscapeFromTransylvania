@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     private Rigidbody rb;
     private float movementSpeed;
 
+    public Transform gunSpawnPoint;
+    public GameObject gunPrefab;
+
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
         movementSpeed = 5f;
@@ -38,5 +41,11 @@ public class Player : MonoBehaviour
     private Vector3 GetInputForMovement()
     {
         return new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+    }
+
+    void Update()
+    {
+        var gun = Instantiate(gunPrefab, gunSpawnPoint.position, gunSpawnPoint.rotation);
+        gun.GetComponent<Rigidbody>().velocity = gun.transform.forward * 10;
     }
 }
