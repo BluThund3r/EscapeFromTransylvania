@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,15 @@ public class Player : MonoBehaviour
     private float _movementSpeed;
     private float _sprintSpeed;
     [SerializeField] private HealthBar _healthBar;
+    [SerializeField] private EnergyBar _energyBar;
     private float _maxHealth;
+    private float _maxEnergy;
     private float _currentHealth;
+    private float _currentEnergy;
+    private bool _canSprint;
+    private float _sprintCost = 0.3f; // The amount that is subtracted from the energy bar when sprinting
+    private float _sprintHeal = 0.15f; // The amount that is added to the energy bar when not sprinting
+    private float _criticalEnergy = 50f; // If you modify this, make sure to modify the gradient for the EnergyBar too (in Unity Editor)
 
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -18,7 +26,11 @@ public class Player : MonoBehaviour
         _sprintSpeed = 10f;
         _maxHealth = 100f;
         _currentHealth = _maxHealth;
+        _maxEnergy = 100f;
+        _currentEnergy = _maxEnergy;
         _healthBar.SetMaxHealth(_maxHealth);
+        _energyBar.SetMaxEnergy(_maxEnergy);
+        _canSprint = true;
     }
     void FixedUpdate() 
     {
@@ -27,6 +39,8 @@ public class Player : MonoBehaviour
 
     void Update(){
         LookAtMouse();
+        _energyBar.SetEnergy(_currentEnergy);
+        // Test damage
         if(Input.GetKeyDown(KeyCode.Space)){
             TakeDamage(20f);
         }
@@ -53,12 +67,22 @@ public class Player : MonoBehaviour
     
     private void MovePlayer()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (isPlayerMoving() && Input.GetKey(KeyCode.LeftShift) && _canSprint)
         {
+            Debug.Log("Sprinting");
+            var newEnergy = _currentEnergy - _sprintCost;
+            _currentEnergy = newEnergy < 0f ? 0f : newEnergy;
+            if(_currentEnergy == 0f)
+                _canSprint = false;
             rb.MovePosition(rb.position + GetInputForMovement() * _sprintSpeed * Time.fixedDeltaTime);
         }
         else
         {
+            Debug.Log("Not sprinting");
+            var newEnergy = _currentEnergy + _sprintHeal;
+            _currentEnergy = newEnergy > _maxEnergy ? _maxEnergy : newEnergy;
+            if(_currentEnergy >= _criticalEnergy)
+                _canSprint = true;
             rb.MovePosition(rb.position + GetInputForMovement() * _movementSpeed * Time.fixedDeltaTime);
         }
         
@@ -67,6 +91,10 @@ public class Player : MonoBehaviour
     private Vector3 GetInputForMovement()
     {
         return new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+    }
+
+    private bool isPlayerMoving() {
+        return Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0;
     }
 
     
