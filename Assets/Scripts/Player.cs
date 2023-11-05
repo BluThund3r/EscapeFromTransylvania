@@ -69,16 +69,15 @@ public class Player : MonoBehaviour
     {
         if (isPlayerMoving() && Input.GetKey(KeyCode.LeftShift) && _canSprint)
         {
-            Debug.Log("Sprinting");
             var newEnergy = _currentEnergy - _sprintCost;
             _currentEnergy = newEnergy < 0f ? 0f : newEnergy;
             if(_currentEnergy == 0f)
                 _canSprint = false;
             rb.MovePosition(rb.position + GetInputForMovement() * _sprintSpeed * Time.fixedDeltaTime);
         }
+        
         else
         {
-            Debug.Log("Not sprinting");
             var newEnergy = _currentEnergy + _sprintHeal;
             _currentEnergy = newEnergy > _maxEnergy ? _maxEnergy : newEnergy;
             if(_currentEnergy >= _criticalEnergy)
