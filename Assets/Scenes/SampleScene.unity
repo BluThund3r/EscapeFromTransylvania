@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 39475079}
   - component: {fileID: 39475078}
   - component: {fileID: 39475083}
+  - component: {fileID: 39475084}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -438,6 +439,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 726802616}
   _energyBar: {fileID: 602326170}
+  weapon: {fileID: 39475084}
+--- !u!114 &39475084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39475077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea63810e3ad6bf419357b8b4cc0bd4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpawnPoint: {fileID: 39475082}
+  bulletPrefab: {fileID: 7315219484097681373, guid: f6fec85985be8934787779e4dde81176, type: 3}
+  bulletsLoaded: 0
+  maxBullets: 0
 --- !u!1 &92356205
 GameObject:
   m_ObjectHideFlags: 0
