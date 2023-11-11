@@ -42,10 +42,4 @@ public class Player : MonoBehaviour
     {
         return new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
     }
-
-/*    void Update()
-    {
-        var gun = Instantiate(gunPrefab, gunSpawnPoint.position, gunSpawnPoint.rotation);
-        *//*gun.GetComponent<Rigidbody>().velocity = gun.transform.forward * 10;*//*
-    }*/
 } 
