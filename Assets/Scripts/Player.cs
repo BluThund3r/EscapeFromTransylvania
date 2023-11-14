@@ -66,7 +66,9 @@ public class Player : MonoBehaviour
 
         float angle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg;
 
-        transform.rotation = Quaternion.Euler(0, -angle, 0);
+        transform.rotation = Quaternion.Euler(0, -angle + 90, 0);
+
+
     }
     
     private void MovePlayer()
