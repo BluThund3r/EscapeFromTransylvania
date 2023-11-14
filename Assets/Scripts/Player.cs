@@ -19,7 +19,8 @@ public class Player : MonoBehaviour
     private float _sprintCost = 0.3f; // The amount that is subtracted from the energy bar when sprinting
     private float _sprintHeal = 0.15f; // The amount that is added to the energy bar when not sprinting
     private float _criticalEnergy = 50f; // If you modify this, make sure to modify the gradient for the EnergyBar too (in Unity Editor)
-
+    public Weapon weapon;
+    
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
         _movementSpeed = 5f;
@@ -42,7 +43,10 @@ public class Player : MonoBehaviour
         _energyBar.SetEnergy(_currentEnergy);
         // Test damage
         if(Input.GetKeyDown(KeyCode.Space)){
-            TakeDamage(20f);
+            weapon.Fire();
+        }
+        if(Input.GetKeyDown(KeyCode.R)){
+            weapon.Reload();
         }
     }
 
@@ -62,7 +66,9 @@ public class Player : MonoBehaviour
 
         float angle = Mathf.Atan2(mouseDirection.y, mouseDirection.x) * Mathf.Rad2Deg;
 
-        transform.rotation = Quaternion.Euler(0, -angle, 0);
+        transform.rotation = Quaternion.Euler(0, -angle + 90, 0);
+
+
     }
     
     private void MovePlayer()
