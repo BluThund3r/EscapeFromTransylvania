@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 8476122003673c142b24d51067fab1ab, type: 2}
 --- !u!1 &15943875
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,7 +555,7 @@ Transform:
   m_GameObject: {fileID: 76340273}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.18, y: 1.93, z: 7.63}
+  m_LocalPosition: {x: 2.18, y: 1, z: 7.63}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1099,7 +1099,7 @@ Transform:
   m_GameObject: {fileID: 476667471}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.59000003}
+  m_LocalPosition: {x: 0, y: 1, z: 0.59000003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1169,10 +1169,10 @@ MonoBehaviour:
   navMeshAgent: {fileID: 476667476}
   startWaitTime: 4
   timeToRotate: 2
-  speedWalk: 6
-  speedRun: 9
-  viewRadius: 15
-  viewAngle: 90
+  speedWalk: 10
+  speedRun: 15
+  viewRadius: 30
+  viewAngle: 120
   playerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1182,7 +1182,8 @@ MonoBehaviour:
   meshResolution: 1
   edgeIterations: 4
   edgeDistance: 0.5
-  waypoints: []
+  waypoints:
+  - {fileID: 39475082}
 --- !u!1 &561403960
 GameObject:
   m_ObjectHideFlags: 0
@@ -2850,7 +2851,7 @@ Transform:
   m_GameObject: {fileID: 1324042087}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.15, y: 2.42, z: -2.2}
+  m_LocalPosition: {x: 2.15, y: 1, z: -2.2}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
