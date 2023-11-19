@@ -44,6 +44,7 @@ public class AIController : MonoBehaviour
 
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speedWalk;
+        waypoints[m_CurrentWaypointIndex] = GameObject.FindGameObjectWithTag("Player").transform;
         navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
     }
 
@@ -110,7 +111,7 @@ public class AIController : MonoBehaviour
         {
             m_PlayerNear = false;
             playerLastPosition = Vector3.zero;
-            navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+                navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
             {
                 if (m_WaitTime <= 0)
