@@ -27,8 +27,9 @@ public class BulletCountController : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.R) && _bulletsLoaded < _maxBulletsLoaded && _bulletsMagazine > 0){
-            _bulletsMagazine -= Mathf.Min(_bulletsMagazine, _maxBulletsLoaded - _bulletsLoaded);
-            _bulletsLoaded = _maxBulletsLoaded;
+            var bulletsToReload = Mathf.Min(_bulletsMagazine, _maxBulletsLoaded - _bulletsLoaded);
+            _bulletsMagazine -= bulletsToReload;
+            _bulletsLoaded += bulletsToReload;
         }
 
         else if(Input.GetMouseButtonDown(0) && _bulletsLoaded > 0){

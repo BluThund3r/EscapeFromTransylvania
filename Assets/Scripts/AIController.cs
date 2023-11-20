@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class AIController : MonoBehaviour
 {
+    private Rigidbody rb;
     public NavMeshAgent navMeshAgent;
     public float startWaitTime = 4;
     public float timeToRotate = 2;
@@ -46,19 +47,34 @@ public class AIController : MonoBehaviour
         navMeshAgent.speed = speedWalk;
         waypoints[m_CurrentWaypointIndex] = GameObject.FindGameObjectWithTag("Player").transform;
         navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // var playerTransform = waypoints[m_CurrentWaypointIndex].transform;
+        // if (Vector3.Distance(transform.position, playerTransform.position) <= 0.5f)
+        // {
+        //     navMeshAgent.updatePosition = false;
+        //     rb.isKinematic = true;
+        // }
+        // else {
+        //     navMeshAgent.updatePosition = true;
+        //     rb.isKinematic = false;
+        // }
+        
         EnvironmentView();
 
         if(!m_IsPatrol)
         {
+            Debug.Log("Chansing");
             Chansing();
         }
         else
         {
+            Debug.Log("Patroling");
+            
             Patroling();
         }
     }
