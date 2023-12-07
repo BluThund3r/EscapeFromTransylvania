@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
         _healthBar.SetMaxHealth(_maxHealth);
         _energyBar.SetMaxEnergy(_maxEnergy);
         _canSprint = true;
+        weapon = transform.GetChild(0).GetComponent<Weapon>();
     }
     void FixedUpdate() 
     {
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour
         LookAtMouse();
         _energyBar.SetEnergy(_currentEnergy);
         // Test damage
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetMouseButtonDown(0)){
             weapon.Fire();
         }
         if(Input.GetKeyDown(KeyCode.R)){
