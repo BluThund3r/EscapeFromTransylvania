@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
         _canSprint = true;
         weaponObject = GetWeaponObject();
         weapon = weaponObject.GetComponent<Weapon>();
-        // DropWeapon();
+        DropWeapon();
     }
     void FixedUpdate() 
     {
@@ -67,23 +67,25 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void DropWeapon() {
+    private bool DropWeapon() {
         if(!hasWeapon())
-            return;
+            return false;
 
         weapon.MakeBulletCountDisable();
         weaponObject.transform.parent = null;
         DestroyImmediate(weaponObject);
         weapon = null;
+        return true;
     }
 
-    public void PickUpWeapon(GameObject weaponPrefab) {
+    public bool PickUpWeapon(GameObject weaponPrefab) {
         if(hasWeapon())
-            return;
+            return false;
 
         weaponObject = Instantiate(weaponPrefab, transform.position, transform.rotation, transform);
         weapon = weaponObject.GetComponent<Weapon>();
         weapon.MakeBulletCountEnable();
+        return true;
     }
 
     public void TakeDamage(float damage)
