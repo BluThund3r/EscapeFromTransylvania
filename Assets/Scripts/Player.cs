@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     private float _sprintHeal = 0.15f; // The amount that is added to the energy bar when not sprinting
     private float _criticalEnergy = 50f; // If you modify this, make sure to modify the gradient for the EnergyBar too (in Unity Editor)
     public Weapon weapon;
+    private GameObject weaponObject;
     
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -32,26 +33,60 @@ public class Player : MonoBehaviour
         _healthBar.SetMaxHealth(_maxHealth);
         _energyBar.SetMaxEnergy(_maxEnergy);
         _canSprint = true;
-        weapon = transform.GetChild(0).GetComponent<Weapon>();
+        weaponObject = GetWeaponObject();
+        weapon = weaponObject.GetComponent<Weapon>();
+        // DropWeapon();
     }
     void FixedUpdate() 
     {
         MovePlayer();
     }
 
+    private GameObject GetWeaponObject() {
+        for(int i = 0; i < transform.childCount; i++) {
+            if(transform.GetChild(i).CompareTag("Weapon")) {
+                return transform.GetChild(i).gameObject;
+            }
+        }
+        return null;
+    }
+
     void Update(){
         LookAtMouse();
         _energyBar.SetEnergy(_currentEnergy);
-        // Test damage
-        if(Input.GetMouseButtonDown(0)){
-            weapon.Fire();
-        }
-        if(Input.GetKeyDown(KeyCode.R)){
-            weapon.Reload();
+        
+        if(this.hasWeapon()) {
+            if(Input.GetMouseButtonDown(0))
+                weapon.Fire();
+
+            else if(Input.GetKeyDown(KeyCode.R))
+                weapon.Reload();
+
+            else if (Input.GetKeyDown(KeyCode.Q))
+                DropWeapon();
         }
     }
 
-    private void TakeDamage(float damage)
+    private void DropWeapon() {
+        if(!hasWeapon())
+            return;
+
+        weapon.MakeBulletCountDisable();
+        weaponObject.transform.parent = null;
+        DestroyImmediate(weaponObject);
+        weapon = null;
+    }
+
+    public void PickUpWeapon(GameObject weaponPrefab) {
+        if(hasWeapon())
+            return;
+
+        weaponObject = Instantiate(weaponPrefab, transform.position, transform.rotation, transform);
+        weapon = weaponObject.GetComponent<Weapon>();
+        weapon.MakeBulletCountEnable();
+    }
+
+    public void TakeDamage(float damage)
     {
         _currentHealth -= damage;
         _healthBar.SetHealth(_currentHealth);
@@ -103,5 +138,8 @@ public class Player : MonoBehaviour
         return Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0;
     }
 
+    private bool hasWeapon() {
+        return weaponObject != null;
+    }
     
 }

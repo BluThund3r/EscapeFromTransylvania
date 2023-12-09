@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5751365290543810921}
   - component: {fileID: 4450162039384692854}
   - component: {fileID: 3947775738909703663}
+  - component: {fileID: 8749576781170669058}
   m_Layer: 0
   m_Name: WeaponSupplier
   m_TagString: Untagged
@@ -105,3 +106,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8749576781170669058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8036274368327600038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74114460f99189147823646587e7579d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponPrefab: {fileID: 1298278722732931347, guid: 1654fc42656b14b4b88e8ca4ff0b2202, type: 3}

@@ -12,13 +12,20 @@ public class Weapon : MonoBehaviour
     [SerializeField] private int _maxBulletsLoaded = 5;
     [SerializeField] private int _maxBulletsMagazine = 10;
     private int _bulletsMagazine;
-    private BulletCountController bulletCountController;
+    private static BulletCountController bulletCountController;
+    protected static GameObject bulletCountObject;
+    private static bool isBulletCountInitialized = false;
 
     void Awake() {
         _bulletsLoaded = _maxBulletsLoaded;
         _bulletsMagazine = _maxBulletsMagazine;
         bulletSpawnPoint = this.transform;
-        bulletCountController = GameObject.Find("Bullet Count").GetComponent<BulletCountController>();
+        if(!isBulletCountInitialized) {
+            bulletCountObject = GameObject.Find("BulletCount");
+            bulletCountController = bulletCountObject.GetComponent<BulletCountController>();
+            isBulletCountInitialized = true;
+        }
+        this.MakeBulletCountEnable();
         bulletCountController.RefreshBulletCount(_bulletsLoaded, _bulletsMagazine);
     }
 
@@ -37,5 +44,13 @@ public class Weapon : MonoBehaviour
             _bulletsLoaded += bulletsToReload;
         }
         bulletCountController.RefreshBulletCount(_bulletsLoaded, _bulletsMagazine);
+    }
+
+    public void MakeBulletCountDisable() {
+        bulletCountObject.SetActive(false);
+    }
+
+    public void MakeBulletCountEnable() {
+        bulletCountObject.SetActive(true);
     }
 }
