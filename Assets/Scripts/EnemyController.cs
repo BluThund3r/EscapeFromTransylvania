@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private float _bulletSpeed = 25f;
     [SerializeField] private float _health = 100f;
+    [SerializeField] private float _maxHealth = 100f;
     private Vector3 _walkPoint;
     private bool _isWalkPointSet = false;
     [SerializeField] private float _walkPointRange;
@@ -19,11 +20,18 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private float _sightRange, _attackRange;
     private bool _playerInSightRange, _playerInAttackRange;
+    [SerializeField] private EnemyHealthBar _healthBar;
 
 
     private void Awake() {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _healthBar = GetComponentInChildren<EnemyHealthBar>();
+    }
+
+    private void Start() {
+        _health = _maxHealth;
+        _healthBar.UpdateHealthBar(_health, _maxHealth);
     }
 
     private void Update() {
@@ -67,7 +75,6 @@ public class EnemyController : MonoBehaviour
     }
 
     private void Attacking() {
-        // Debug.Log("Attacking " + _alreadyAttacked);
         _navMeshAgent.SetDestination(transform.position);
         transform.LookAt(_player);
 
@@ -85,14 +92,22 @@ public class EnemyController : MonoBehaviour
         _alreadyAttacked = false;
     }
 
-    private void TakeDamage(float damage) {
-        _health -= damage;
-
-        if(_health <= 0) 
-            Invoke(nameof(DestroyEnemy), 0.5f);
+    private void OnCollisionEnter(Collision other) {
+        if(other.gameObject.CompareTag("Harmful")) {
+            TakeDamage(20f);
+        }
+            
     }
 
-    private void DestroyEnemy() {
-        Destroy(this.gameObject);
+    public void TakeDamage(float damage) {
+        _health -= damage;
+        _healthBar.UpdateHealthBar(_health, _maxHealth);
+
+        if(_health <= 0) 
+            Die();
+    }
+
+    private void Die() {
+        Destroy(gameObject);
     }
 }
