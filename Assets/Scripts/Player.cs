@@ -67,6 +67,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    void LateUpdate(){
+        // make sure player stays on the ground
+        if(transform.position.y < 0.995f)
+            transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+    }
     private bool DropWeapon() {
         if(!hasWeapon())
             return false;
