@@ -11,4 +11,10 @@ Make your way to an extraction point before the time runs out. Travel through di
 - Discover alternative, more convenient ways to escape.
 - Try not to get lost.
 
+### Controls:
+- WASD to move
+- R to reload
+- Tab to show/hide timer
+- MB1 to shoot
+
 ![sketch of the map](https://github.com/BluThund3r/EscapeFromTransylvania/blob/main/Ideas/Map1.png)
