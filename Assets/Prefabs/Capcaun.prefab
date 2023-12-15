@@ -114,11 +114,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6540328128396819478}
-  - component: {fileID: 5981513741906951429}
   - component: {fileID: 1797343415746219786}
   - component: {fileID: 472966041004716168}
+  - component: {fileID: 8313072503864344658}
   m_Layer: 0
-  m_Name: AnotherEnemy
+  m_Name: Capcaun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,35 +142,6 @@ Transform:
   - {fileID: 8083268085099494610}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5981513741906951429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 331433367398169145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a56af5fc74c84654b875a8283bee391d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _navMeshAgent: {fileID: 1797343415746219786}
-  _player: {fileID: 0}
-  _groundMask:
-    serializedVersion: 2
-    m_Bits: 1
-  _playerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  _bulletPrefab: {fileID: 7315219484097681373, guid: f6fec85985be8934787779e4dde81176, type: 3}
-  _bulletSpeed: 25
-  _health: 100
-  _maxHealth: 100
-  _walkPointRange: 10
-  _timeBetweenAttacks: 1
-  _sightRange: 50
-  _attackRange: 2
-  _healthBar: {fileID: 0}
 --- !u!195 &1797343415746219786
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -189,8 +160,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
+  m_Height: 1
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!65 &472966041004716168
@@ -214,6 +185,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8313072503864344658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331433367398169145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1b0b3183534244b9bac46a9f4c18b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _navMeshAgent: {fileID: 1797343415746219786}
+  _player: {fileID: 0}
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _playerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _health: 0
+  _maxHealth: 100
+  _walkPointRange: 0.1
+  _timeBetweenAttacks: 0.5
+  _sightRange: 20
+  _attackRange: 5
+  _healthBar: {fileID: 0}
+  _bulletPrefab: {fileID: 7315219484097681373, guid: f6fec85985be8934787779e4dde81176, type: 3}
 --- !u!1 &1097625543475328280
 GameObject:
   m_ObjectHideFlags: 0

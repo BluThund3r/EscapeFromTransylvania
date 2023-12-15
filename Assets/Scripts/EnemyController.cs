@@ -2,24 +2,22 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
+public abstract class EnemyController : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent _navMeshAgent;
-    [SerializeField] private Transform _player;
+    [SerializeField] protected NavMeshAgent _navMeshAgent;
+    [SerializeField] protected Transform _player;
     [SerializeField] private LayerMask _groundMask, _playerMask;
-    [SerializeField] private GameObject _bulletPrefab;
-    [SerializeField] private float _bulletSpeed = 25f;
-    [SerializeField] private float _health = 100f;
-    [SerializeField] private float _maxHealth = 100f;
+    [SerializeField] protected float _health;
+    [SerializeField] protected float _maxHealth = 100f;
     private Vector3 _walkPoint;
     private bool _isWalkPointSet = false;
     [SerializeField] private float _walkPointRange;
 
-    [SerializeField] private float _timeBetweenAttacks;
-    private bool _alreadyAttacked = false;
+    [SerializeField] protected float _timeBetweenAttacks;
+    protected bool _alreadyAttacked = false;
 
-    [SerializeField] private float _sightRange, _attackRange;
-    private bool _playerInSightRange, _playerInAttackRange;
+    [SerializeField] protected float _sightRange, _attackRange;
+    protected bool _playerInSightRange, _playerInAttackRange;
     [SerializeField] private EnemyHealthBar _healthBar;
 
 
@@ -27,6 +25,8 @@ public class EnemyController : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _healthBar = GetComponentInChildren<EnemyHealthBar>();
+        _playerMask = LayerMask.GetMask("Player");
+        _groundMask = LayerMask.GetMask("WhatIsGround");
     }
 
     private void Start() {
@@ -46,8 +46,8 @@ public class EnemyController : MonoBehaviour
             Attacking();
     }
 
-    private void Patroling() {
-        Debug.Log("Patroling");
+    protected void Patroling() {
+        Debug.LogError("Patroling");
         if(!_isWalkPointSet)
             SetWalkPoint();
         
@@ -59,7 +59,7 @@ public class EnemyController : MonoBehaviour
             _isWalkPointSet = false;
     }
 
-    private void SetWalkPoint() {
+    protected void SetWalkPoint() {
         float randomZ = Random.Range(-_walkPointRange, _walkPointRange);
         float randomX = Random.Range(-_walkPointRange, _walkPointRange);
         _walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ); 
@@ -68,38 +68,26 @@ public class EnemyController : MonoBehaviour
             _isWalkPointSet = true;
     }
 
-    private void Chasing() {
-        Debug.Log("Chasing");
+    protected void Chasing() {
+        Debug.LogError("Chasing");
         _navMeshAgent.SetDestination(_player.position);
         transform.LookAt(_player);
     }
 
-    private void Attacking() {
-        _navMeshAgent.SetDestination(transform.position);
-        transform.LookAt(_player);
+    protected abstract void Attacking(); 
 
-        if(!_alreadyAttacked) {
-            var bulletRb = Instantiate(_bulletPrefab, transform.position + transform.forward.normalized, Quaternion.identity).GetComponent<Rigidbody>();
-            bulletRb.useGravity = false;
-            bulletRb.AddForce(transform.forward.normalized * _bulletSpeed, ForceMode.Impulse);
-
-            _alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), _timeBetweenAttacks); // apeleaza ResetAttack o data la _timeBetweenAttacks secunde
-        }
-    }
-
-    private void ResetAttack() {
+    protected void ResetAttack() {
         _alreadyAttacked = false;
     }
 
-    private void OnCollisionEnter(Collision other) {
+    protected void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Harmful")) {
-            TakeDamage(20f);
+            float damage = other.gameObject.GetComponent<Harmful>().Damage();
+            TakeDamage(damage);
         }
-            
     }
 
-    public void TakeDamage(float damage) {
+    protected void TakeDamage(float damage) {
         _health -= damage;
         _healthBar.UpdateHealthBar(_health, _maxHealth);
 
@@ -107,7 +95,7 @@ public class EnemyController : MonoBehaviour
             Die();
     }
 
-    private void Die() {
+    protected void Die() {
         Destroy(gameObject);
     }
 }

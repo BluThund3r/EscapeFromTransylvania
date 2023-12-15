@@ -33,6 +33,7 @@ public class Weapon : MonoBehaviour
         if(_bulletsLoaded > 0) {
             _bulletsLoaded --;
             Bullet bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation).GetComponent<Bullet>();
+            bullet.SetDirection(bulletSpawnPoint.forward);
         }
         bulletCountController.RefreshBulletCount(_bulletsLoaded, _bulletsMagazine);
     }
