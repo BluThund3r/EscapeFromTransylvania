@@ -4,7 +4,9 @@ using UnityEngine;
 
 public abstract class Harmful : MonoBehaviour
 {
-    public virtual float Damage() {
-        return 10f;
-    }
+    protected float Damage = 20f;
+
+    abstract public void SetDamage(float damage);
+
+    abstract public float GetDamage();
 }

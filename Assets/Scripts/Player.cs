@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Video;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
     private Rigidbody rb;
@@ -97,6 +99,13 @@ public class Player : MonoBehaviour
     {
         _currentHealth -= damage;
         _healthBar.SetHealth(_currentHealth);
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        if(other.gameObject.CompareTag("Harmful")) {
+            float damage = other.gameObject.GetComponent<Harmful>().GetDamage();
+            TakeDamage(damage);
+        }
     }
 
     private void LookAtMouse()

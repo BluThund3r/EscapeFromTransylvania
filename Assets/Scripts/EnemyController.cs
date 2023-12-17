@@ -8,12 +8,12 @@ public abstract class EnemyController : MonoBehaviour
     [SerializeField] protected Transform _player;
     [SerializeField] private LayerMask _groundMask, _playerMask;
     [SerializeField] protected float _health;
-    [SerializeField] protected float _maxHealth = 100f;
+    protected float _maxHealth = 100f;
     private Vector3 _walkPoint;
     private bool _isWalkPointSet = false;
     [SerializeField] private float _walkPointRange;
 
-    [SerializeField] protected float _timeBetweenAttacks;
+    [SerializeField] protected virtual float _timeBetweenAttacks {get; set;}
     protected bool _alreadyAttacked = false;
 
     [SerializeField] protected float _sightRange, _attackRange;
@@ -21,7 +21,7 @@ public abstract class EnemyController : MonoBehaviour
     [SerializeField] private EnemyHealthBar _healthBar;
 
 
-    private void Awake() {
+    protected void Awake() {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _healthBar = GetComponentInChildren<EnemyHealthBar>();
@@ -29,7 +29,7 @@ public abstract class EnemyController : MonoBehaviour
         _groundMask = LayerMask.GetMask("WhatIsGround");
     }
 
-    private void Start() {
+    protected void Start() {
         _health = _maxHealth;
         _healthBar.UpdateHealthBar(_health, _maxHealth);
     }
@@ -38,21 +38,24 @@ public abstract class EnemyController : MonoBehaviour
         _playerInSightRange = Physics.CheckSphere(transform.position, _sightRange, _playerMask);
         _playerInAttackRange = Physics.CheckSphere(transform.position, _attackRange, _playerMask);
 
-        if(!_playerInSightRange && !_playerInAttackRange) 
+        if (_playerInSightRange) {
+            if (_playerInAttackRange)
+                Attacking();
+            else
+                Chasing();
+        } else {
             Patroling();
-        else if(_playerInSightRange && !_playerInAttackRange)
-            Chasing();
-        else if(_playerInSightRange && _playerInAttackRange)
-            Attacking();
+        }   
     }
 
     protected void Patroling() {
-        Debug.LogError("Patroling");
         if(!_isWalkPointSet)
             SetWalkPoint();
         
-        if(_isWalkPointSet)
+        if(_isWalkPointSet) {
             _navMeshAgent.SetDestination(_walkPoint);
+        }
+            
 
         Vector3 distanceToWalkPoint = transform.position - _walkPoint;
         if(distanceToWalkPoint.magnitude < 0.1f)
@@ -69,7 +72,6 @@ public abstract class EnemyController : MonoBehaviour
     }
 
     protected void Chasing() {
-        Debug.LogError("Chasing");
         _navMeshAgent.SetDestination(_player.position);
         transform.LookAt(_player);
     }
@@ -80,14 +82,7 @@ public abstract class EnemyController : MonoBehaviour
         _alreadyAttacked = false;
     }
 
-    protected void OnCollisionEnter(Collision other) {
-        if(other.gameObject.CompareTag("Harmful")) {
-            float damage = other.gameObject.GetComponent<Harmful>().Damage();
-            TakeDamage(damage);
-        }
-    }
-
-    protected void TakeDamage(float damage) {
+    public void TakeDamage(float damage) {
         _health -= damage;
         _healthBar.UpdateHealthBar(_health, _maxHealth);
 

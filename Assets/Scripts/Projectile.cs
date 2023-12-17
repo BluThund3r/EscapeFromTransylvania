@@ -9,9 +9,22 @@ public class Projectile : Harmful
     public float projectileSpeed = 10;
     private bool _directionSet = false;
 
+    void Awake()
+    {
+        SetDamage(10f);
+    }
+
     void Start()
     {
         Destroy(gameObject, life);
+    }
+
+    public override void SetDamage(float damage) {
+        this.Damage = damage;
+    }
+
+    public override float GetDamage() {
+        return this.Damage;
     }
 
     void FixedUpdate() 
@@ -27,8 +40,13 @@ public class Projectile : Harmful
         _directionSet = true;
     }
 
-    void OnCollisionEnter(Collision collision)
+    protected void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject.CompareTag("Player")) {
+            collision.gameObject.GetComponent<Player>().TakeDamage(GetDamage());
+        } else if(collision.gameObject.CompareTag("Enemy")) {
+            collision.gameObject.GetComponent<EnemyController>().TakeDamage(GetDamage());
+        }
         Destroy(gameObject);
     }
 }
