@@ -42,6 +42,7 @@ public class Projectile : Harmful
 
     protected void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("colision");
         if(collision.gameObject.CompareTag("Player")) {
             collision.gameObject.GetComponent<Player>().TakeDamage(GetDamage());
         } else if(collision.gameObject.CompareTag("Enemy")) {

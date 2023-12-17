@@ -101,13 +101,6 @@ public class Player : MonoBehaviour
         _healthBar.SetHealth(_currentHealth);
     }
 
-    private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.CompareTag("Harmful")) {
-            float damage = other.gameObject.GetComponent<Harmful>().GetDamage();
-            TakeDamage(damage);
-        }
-    }
-
     private void LookAtMouse()
     {
         Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);

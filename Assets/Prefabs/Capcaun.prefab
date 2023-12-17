@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1156956671352882497}
   - component: {fileID: 5683239061778441706}
   - component: {fileID: 2895524997444635437}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 1797343415746219786}
   - component: {fileID: 472966041004716168}
   - component: {fileID: 8313072503864344658}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capcaun
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ MonoBehaviour:
   _sightRange: 10
   _attackRange: 5
   _healthBar: {fileID: 0}
-  _bulletPrefab: {fileID: 7315219484097681373, guid: f6fec85985be8934787779e4dde81176, type: 3}
+  _bulletPrefab: {fileID: 7315219484097681373, guid: 9f2e2d95aa55e6b4581abcbda3025a86, type: 3}
 --- !u!1 &1097625543475328280
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6094935186161833490}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 893617382614771935}
   - component: {fileID: 848378918609195007}
   - component: {fileID: 1503967638171774989}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 8083268085099494610}
   - component: {fileID: 706370509787826153}
   - component: {fileID: 8056128919247487574}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 8003588726164748924}
   - component: {fileID: 6746283606552383897}
   - component: {fileID: 2223096400378823384}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 714669107657203101}
   - component: {fileID: 2569949213353088824}
   - component: {fileID: 2431962055260200592}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 2820364857076526190}
   - component: {fileID: 5820669280319444692}
   - component: {fileID: 3527578430022077000}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
