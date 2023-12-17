@@ -17,8 +17,8 @@ TagManager:
   - Player
   - Obstacles
   - Enemy
-  - Bullets
-  - 
+  - PlayerBullets
+  - EnemyBullets
   - 
   - 
   - 
