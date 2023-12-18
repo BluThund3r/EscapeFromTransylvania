@@ -23,9 +23,9 @@ public class DamageSphere : Harmful
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.gameObject == damageSphereSummoner)
+        if(other.gameObject == damageSphereSummoner) 
             return;
-
+        
         if(other.gameObject.CompareTag("Player")) {
             other.GetComponent<Player>().TakeDamage(GetDamage());
         } else if(other.gameObject.CompareTag("Enemy")) {

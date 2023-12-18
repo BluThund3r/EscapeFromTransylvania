@@ -15,7 +15,7 @@ public class Vampire : EnemyController
 
     private void Start() {
         base.Start();
-        _timeBetweenAttacks = 5f;
+        _timeBetweenAttacks = 3f;
     }
 
     protected override void Attacking()
@@ -81,18 +81,8 @@ public class Vampire : EnemyController
     public void SpawnDamageSphere() {
         damageSphere = Instantiate(damageSpherePrefab, transform.position, Quaternion.identity).GetComponent<DamageSphere>();
         damageSphere.SetDamageSphereSummoner(gameObject);
-        Destroy(damageSphere.gameObject, 0.2f);
+        Destroy(damageSphere.gameObject, 1f);
 
         Invoke(nameof(ResetAttack), _timeBetweenAttacks);
     }
-
-
-
-    // protected new void OnTriggerEnter(Collider other) {
-    //     var otherDamageSphere = other.gameObject.GetComponent<DamageSphere>();
-    //     if(otherDamageSphere != null && otherDamageSphere == damageSphere)
-    //         return;
-
-    //     base.OnTriggerEnter(other);
-    // }
 }

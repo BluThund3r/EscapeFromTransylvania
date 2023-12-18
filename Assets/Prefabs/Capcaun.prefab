@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 1797343415746219786}
   - component: {fileID: 472966041004716168}
   - component: {fileID: 8313072503864344658}
+  - component: {fileID: 1733643065585474243}
   m_Layer: 8
   m_Name: Capcaun
   m_TagString: Enemy
@@ -210,7 +211,34 @@ MonoBehaviour:
   _sightRange: 10
   _attackRange: 5
   _healthBar: {fileID: 0}
-  _bulletPrefab: {fileID: 7315219484097681373, guid: 9f2e2d95aa55e6b4581abcbda3025a86, type: 3}
+  _bulletPrefab: {fileID: 7315219484097681373, guid: d2fa1e01b1baaa54cb042cf30637bd63, type: 3}
+--- !u!54 &1733643065585474243
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331433367398169145}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &1097625543475328280
 GameObject:
   m_ObjectHideFlags: 0

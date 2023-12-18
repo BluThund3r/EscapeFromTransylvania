@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7206654091302359039}
   - component: {fileID: 8586729870055411120}
   - component: {fileID: 7706106898280771512}
+  - component: {fileID: 2620783399380234175}
   m_Layer: 8
   m_Name: Vampire
   m_TagString: Enemy
@@ -106,6 +107,33 @@ MonoBehaviour:
   _attackRange: 5
   _healthBar: {fileID: 0}
   damageSpherePrefab: {fileID: 758533659229697830, guid: 42fc6e64cb64e384c9f4c23a4524dd30, type: 3}
+--- !u!54 &2620783399380234175
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546439646924179369}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &3281389226233122258
 GameObject:
   m_ObjectHideFlags: 0
