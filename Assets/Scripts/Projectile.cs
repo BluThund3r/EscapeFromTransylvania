@@ -7,7 +7,7 @@ public class Projectile : Harmful
 {
     public float life = 3f;
     public float projectileSpeed = 10;
-    private bool _directionSet = false;
+    protected bool _directionSet = false;
 
     void Awake()
     {
