@@ -106,6 +106,7 @@ MonoBehaviour:
   _sightRange: 10
   _attackRange: 5
   _healthBar: {fileID: 0}
+  hpPrefab: {fileID: 8320862940791490115, guid: f69c25a11855ea24989ace1dd13696d2, type: 3}
   damageSpherePrefab: {fileID: 758533659229697830, guid: 42fc6e64cb64e384c9f4c23a4524dd30, type: 3}
 --- !u!54 &2620783399380234175
 Rigidbody:

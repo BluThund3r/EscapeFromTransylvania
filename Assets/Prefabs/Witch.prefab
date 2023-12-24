@@ -721,4 +721,5 @@ MonoBehaviour:
   _sightRange: 15
   _attackRange: 10
   _healthBar: {fileID: 0}
+  hpPrefab: {fileID: 8320862940791490115, guid: f69c25a11855ea24989ace1dd13696d2, type: 3}
   potionPrefab: {fileID: 4137579823305091306, guid: 96862dff6508f4945a0dcab6c5c0f80c, type: 3}

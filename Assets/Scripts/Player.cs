@@ -150,5 +150,12 @@ public class Player : MonoBehaviour
     private bool hasWeapon() {
         return weaponObject != null;
     }
-    
+
+    public void Heal(float hp)
+    {
+        if(_currentHealth >= _maxHealth)
+            return;
+        _currentHealth = Math.Min(_currentHealth + hp, _maxHealth);
+        _healthBar.SetHealth(_currentHealth);
+    }
 }

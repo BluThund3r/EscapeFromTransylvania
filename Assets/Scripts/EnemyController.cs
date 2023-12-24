@@ -1,6 +1,8 @@
+using System;
 using System.Net;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public abstract class EnemyController : MonoBehaviour
 {
@@ -19,7 +21,8 @@ public abstract class EnemyController : MonoBehaviour
     [SerializeField] protected float _sightRange, _attackRange;
     protected bool _playerInSightRange, _playerInAttackRange;
     [SerializeField] private EnemyHealthBar _healthBar;
-
+    public GameObject hpPrefab;
+    private int minHPSpawn = 0, maxHPSpawn = 4;
 
     protected void Awake() {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -91,6 +94,18 @@ public abstract class EnemyController : MonoBehaviour
     }
 
     protected void Die() {
+        SpanwnHP();
         Destroy(gameObject);
+    }
+
+    private void SpanwnHP()
+    {
+        var noSpawn = Random.Range(minHPSpawn, maxHPSpawn);
+        var randomSmallZ = Random.Range(-0.5f, 0.5f);
+        var randomSmallX = Random.Range(-0.5f, 0.5f);
+        for (int i = 0; i < noSpawn; i++)
+        {
+            Instantiate(hpPrefab, transform.position + new Vector3(randomSmallX, 0.5f, randomSmallZ), Quaternion.identity);
+        }
     }
 }
