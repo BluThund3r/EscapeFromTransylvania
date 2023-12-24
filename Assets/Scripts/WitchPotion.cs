@@ -10,12 +10,12 @@ public class WitchPotion : GravityProjectile
         SetDamage(0.1f);
     }
 
-    protected new void OnCollisionEnter(Collision collision)
+    protected void OnTriggerEnter(Collider other)
     {
-        if( collision.gameObject.layer == LayerMask.NameToLayer("WhatIsGround") ||
-            collision.gameObject.layer == LayerMask.NameToLayer("Obstacles") || 
-            collision.gameObject.layer == LayerMask.NameToLayer("Player") ||
-            collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if( other.gameObject.layer == LayerMask.NameToLayer("WhatIsGround") ||
+            other.gameObject.layer == LayerMask.NameToLayer("Obstacles") || 
+            other.gameObject.layer == LayerMask.NameToLayer("Player") ||
+            other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             SummonPoisonArea();
             Destroy(gameObject);

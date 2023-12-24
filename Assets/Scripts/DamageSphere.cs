@@ -32,4 +32,8 @@ public class DamageSphere : Harmful
             other.GetComponent<EnemyController>().TakeDamage(GetDamage());
         }
     }
+
+    public void SetRadius(float radius) {
+        transform.localScale = new Vector3(radius, radius, radius);
+    }
 }

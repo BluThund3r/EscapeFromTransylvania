@@ -20,4 +20,8 @@ public abstract class GravityProjectile : Projectile
         this.direction = direction;
         _directionSet = true;
     }
+
+    protected new void OnCollisionEnter(Collision collision) {
+        // empty because no behaviour is needed by default; each subclass should implement its own behaviour
+    }
 }
