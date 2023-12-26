@@ -22,7 +22,8 @@ public abstract class EnemyController : MonoBehaviour
     protected bool _playerInSightRange, _playerInAttackRange;
     [SerializeField] private EnemyHealthBar _healthBar;
     public GameObject hpPrefab;
-    private int minHPSpawn = 0, maxHPSpawn = 4;
+    public GameObject epPrefab;
+    private int minHPSpawn = 0, maxHPSpawn = 4, minEPSpawn = 0, maxEPSpawn = 3;
 
     protected void Awake() {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -94,18 +95,27 @@ public abstract class EnemyController : MonoBehaviour
     }
 
     protected void Die() {
-        SpanwnHP();
+        SpanwnDrops();
         Destroy(gameObject);
     }
 
-    private void SpanwnHP()
+    private void SpanwnDrops()
     {
-        var noSpawn = Random.Range(minHPSpawn, maxHPSpawn);
-        var randomSmallZ = Random.Range(-0.5f, 0.5f);
-        var randomSmallX = Random.Range(-0.5f, 0.5f);
-        for (int i = 0; i < noSpawn; i++)
+        Debug.Log("Spawn drops");
+        var noHPSpawn = Random.Range(minHPSpawn, maxHPSpawn);
+        for (int i = 0; i < noHPSpawn; i++)
         {
+            var randomSmallZ = Random.Range(-0.5f, 0.5f);
+            var randomSmallX = Random.Range(-0.5f, 0.5f);
             Instantiate(hpPrefab, transform.position + new Vector3(randomSmallX, 0.5f, randomSmallZ), Quaternion.identity);
+        }
+
+        var noEPSpawn = Random.Range(minEPSpawn, maxEPSpawn);
+        for (int i = 0; i < noEPSpawn; i++)
+        {
+            var randomSmallZ = Random.Range(-0.5f, 0.5f);
+            var randomSmallX = Random.Range(-0.5f, 0.5f);
+            Instantiate(epPrefab, transform.position + new Vector3(randomSmallX, 0.5f, randomSmallZ), Quaternion.identity);
         }
     }
 }

@@ -158,4 +158,13 @@ public class Player : MonoBehaviour
         _currentHealth = Math.Min(_currentHealth + hp, _maxHealth);
         _healthBar.SetHealth(_currentHealth);
     }
+
+    public void RegenEnergy(float ep)
+    {
+        if(_currentEnergy >= _maxEnergy)
+            return;
+
+        _currentEnergy = Math.Min(_currentEnergy + ep, _maxEnergy);
+        _energyBar.SetEnergy(_currentEnergy);
+    }
 }

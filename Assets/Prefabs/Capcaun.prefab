@@ -212,6 +212,7 @@ MonoBehaviour:
   _attackRange: 5
   _healthBar: {fileID: 0}
   hpPrefab: {fileID: 8320862940791490115, guid: f69c25a11855ea24989ace1dd13696d2, type: 3}
+  epPrefab: {fileID: 8320862940791490115, guid: 9ef6f6f13d453ae4fa12a345113b8d22, type: 3}
   _bulletPrefab: {fileID: 7315219484097681373, guid: d2fa1e01b1baaa54cb042cf30637bd63, type: 3}
 --- !u!54 &1733643065585474243
 Rigidbody:

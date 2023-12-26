@@ -81,7 +81,7 @@ public class Vampire : EnemyController
     public void SpawnDamageSphere() {
         damageSphere = Instantiate(damageSpherePrefab, transform.position, Quaternion.identity).GetComponent<DamageSphere>();
         damageSphere.SetDamageSphereSummoner(gameObject);
-        Destroy(damageSphere.gameObject, 1f);
+        Destroy(damageSphere.gameObject, 0.5f);
 
         Invoke(nameof(ResetAttack), _timeBetweenAttacks);
     }

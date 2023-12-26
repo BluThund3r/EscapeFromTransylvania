@@ -209,6 +209,7 @@ MonoBehaviour:
   _attackRange: 15
   _healthBar: {fileID: 0}
   hpPrefab: {fileID: 8320862940791490115, guid: f69c25a11855ea24989ace1dd13696d2, type: 3}
+  epPrefab: {fileID: 8320862940791490115, guid: 9ef6f6f13d453ae4fa12a345113b8d22, type: 3}
   fireballPrefab: {fileID: 6233734369686091947, guid: 15d6b8c4abfc0404691b5f417697fd4a, type: 3}
 --- !u!1 &4005357282796100130
 GameObject:

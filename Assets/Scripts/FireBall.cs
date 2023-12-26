@@ -22,6 +22,7 @@ public class FireBall : MonoBehaviour
         damageSphere.SetDamage(20f);
         var explosion = Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
         Destroy(explosion, 2f);
+        Destroy(damageSphere.gameObject, 0.5f);
         target.DestroyTarget();
         Destroy(gameObject);
     }
