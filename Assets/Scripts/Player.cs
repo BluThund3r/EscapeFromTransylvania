@@ -97,6 +97,11 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if(_currentHealth <= 0f) {
+            //Die();
+            return;
+        }
+        
         _currentHealth -= damage;
         _healthBar.SetHealth(_currentHealth);
     }

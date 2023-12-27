@@ -101,7 +101,6 @@ public abstract class EnemyController : MonoBehaviour
 
     private void SpanwnDrops()
     {
-        Debug.Log("Spawn drops");
         var noHPSpawn = Random.Range(minHPSpawn, maxHPSpawn);
         for (int i = 0; i < noHPSpawn; i++)
         {
@@ -117,5 +116,7 @@ public abstract class EnemyController : MonoBehaviour
             var randomSmallX = Random.Range(-0.5f, 0.5f);
             Instantiate(epPrefab, transform.position + new Vector3(randomSmallX, 0.5f, randomSmallZ), Quaternion.identity);
         }
+
+        Debug.Log($"Spawned {noEPSpawn} EP,  {noHPSpawn} HP");
     }
 }

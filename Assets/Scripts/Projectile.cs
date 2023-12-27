@@ -9,6 +9,8 @@ public class Projectile : Harmful
     public float projectileSpeed = 10;
     protected bool _directionSet = false;
 
+    private bool alreadyCollided = false;
+
     void Awake()
     {
         SetDamage(10f);
@@ -42,12 +44,18 @@ public class Projectile : Harmful
 
     protected void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("colision");
+        if(alreadyCollided)
+            return;
+
+        Debug.Log("colision with " + collision.gameObject.name + " detected");
         if(collision.gameObject.CompareTag("Player")) {
             collision.gameObject.GetComponent<Player>().TakeDamage(GetDamage());
+            alreadyCollided = true;
         } else if(collision.gameObject.CompareTag("Enemy")) {
             collision.gameObject.GetComponent<EnemyController>().TakeDamage(GetDamage());
+            alreadyCollided = true;
         }
+        
         Destroy(gameObject);
     }
 }

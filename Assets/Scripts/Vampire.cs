@@ -13,7 +13,7 @@ public class Vampire : EnemyController
 
     private DamageSphere damageSphere;
 
-    private void Start() {
+    private new void Start() {
         base.Start();
         _timeBetweenAttacks = 3f;
     }

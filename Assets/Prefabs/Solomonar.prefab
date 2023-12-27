@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0d6a96d830ac7f429a457636802df5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _navMeshAgent: {fileID: 0}
+  _navMeshAgent: {fileID: 5057414581823664930}
   _player: {fileID: 0}
   _groundMask:
     serializedVersion: 2
@@ -207,7 +207,7 @@ MonoBehaviour:
   _walkPointRange: 5
   _sightRange: 20
   _attackRange: 15
-  _healthBar: {fileID: 0}
+  _healthBar: {fileID: 217607103984069066}
   hpPrefab: {fileID: 8320862940791490115, guid: f69c25a11855ea24989ace1dd13696d2, type: 3}
   epPrefab: {fileID: 8320862940791490115, guid: 9ef6f6f13d453ae4fa12a345113b8d22, type: 3}
   fireballPrefab: {fileID: 6233734369686091947, guid: 15d6b8c4abfc0404691b5f417697fd4a, type: 3}

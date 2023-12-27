@@ -93,19 +93,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de5bc05a80a8a24eafa28d3e5c08062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _navMeshAgent: {fileID: 0}
+  _navMeshAgent: {fileID: 7206654091302359039}
   _player: {fileID: 0}
   _groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   _playerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   _health: 0
   _walkPointRange: 5
   _sightRange: 10
   _attackRange: 5
-  _healthBar: {fileID: 0}
+  _healthBar: {fileID: 3630480740489843192}
   hpPrefab: {fileID: 8320862940791490115, guid: f69c25a11855ea24989ace1dd13696d2, type: 3}
   epPrefab: {fileID: 8320862940791490115, guid: 9ef6f6f13d453ae4fa12a345113b8d22, type: 3}
   damageSpherePrefab: {fileID: 758533659229697830, guid: 42fc6e64cb64e384c9f4c23a4524dd30, type: 3}

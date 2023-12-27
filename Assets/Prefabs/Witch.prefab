@@ -708,7 +708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68147cf25e7b2314b834727ccc829398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _navMeshAgent: {fileID: 0}
+  _navMeshAgent: {fileID: 5995583878672145945}
   _player: {fileID: 0}
   _groundMask:
     serializedVersion: 2
@@ -720,7 +720,7 @@ MonoBehaviour:
   _walkPointRange: 5
   _sightRange: 15
   _attackRange: 10
-  _healthBar: {fileID: 0}
+  _healthBar: {fileID: 1373401680706397960}
   hpPrefab: {fileID: 8320862940791490115, guid: f69c25a11855ea24989ace1dd13696d2, type: 3}
   epPrefab: {fileID: 8320862940791490115, guid: 9ef6f6f13d453ae4fa12a345113b8d22, type: 3}
   potionPrefab: {fileID: 4137579823305091306, guid: 96862dff6508f4945a0dcab6c5c0f80c, type: 3}
