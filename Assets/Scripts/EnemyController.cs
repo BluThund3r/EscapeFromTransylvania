@@ -117,6 +117,6 @@ public abstract class EnemyController : MonoBehaviour
             Instantiate(epPrefab, transform.position + new Vector3(randomSmallX, 0.5f, randomSmallZ), Quaternion.identity);
         }
 
-        Debug.Log($"Spawned {noEPSpawn} EP,  {noHPSpawn} HP");
+        // Debug.Log($"Spawned {noEPSpawn} EP,  {noHPSpawn} HP");
     }
 }

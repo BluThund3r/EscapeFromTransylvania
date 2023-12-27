@@ -1431,15 +1431,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 546439646924179369, guid: 5e899326f85eac140ab645d5e0656fcd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4470750420266144480, guid: 5e899326f85eac140ab645d5e0656fcd, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4470750420266144480, guid: 5e899326f85eac140ab645d5e0656fcd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7706106898280771512, guid: 5e899326f85eac140ab645d5e0656fcd, type: 3}
       propertyPath: _player
@@ -2619,6 +2619,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 711746772}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1235270552
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 331433367398169145, guid: 6234f423ba7a042498a242338d5a9a4e, type: 3}
+      propertyPath: m_Name
+      value: Pricolici
+      objectReference: {fileID: 0}
+    - target: {fileID: 331433367398169145, guid: 6234f423ba7a042498a242338d5a9a4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540328128396819478, guid: 6234f423ba7a042498a242338d5a9a4e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.5389085
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540328128396819478, guid: 6234f423ba7a042498a242338d5a9a4e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540328128396819478, guid: 6234f423ba7a042498a242338d5a9a4e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.7526598
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540328128396819478, guid: 6234f423ba7a042498a242338d5a9a4e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540328128396819478, guid: 6234f423ba7a042498a242338d5a9a4e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540328128396819478, guid: 6234f423ba7a042498a242338d5a9a4e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540328128396819478, guid: 6234f423ba7a042498a242338d5a9a4e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540328128396819478, guid: 6234f423ba7a042498a242338d5a9a4e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540328128396819478, guid: 6234f423ba7a042498a242338d5a9a4e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540328128396819478, guid: 6234f423ba7a042498a242338d5a9a4e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8003588726164748924, guid: 6234f423ba7a042498a242338d5a9a4e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8003588726164748924, guid: 6234f423ba7a042498a242338d5a9a4e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6234f423ba7a042498a242338d5a9a4e, type: 3}
 --- !u!1 &1275045616
 GameObject:
   m_ObjectHideFlags: 0
@@ -3744,3 +3813,4 @@ SceneRoots:
   - {fileID: 8444378}
   - {fileID: 6671399330308079222}
   - {fileID: 1290018900}
+  - {fileID: 1235270552}

@@ -47,7 +47,7 @@ public class Projectile : Harmful
         if(alreadyCollided)
             return;
 
-        Debug.Log("colision with " + collision.gameObject.name + " detected");
+        // Debug.Log("colision with " + collision.gameObject.name + " detected");
         if(collision.gameObject.CompareTag("Player")) {
             collision.gameObject.GetComponent<Player>().TakeDamage(GetDamage());
             alreadyCollided = true;
