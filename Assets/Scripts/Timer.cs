@@ -9,6 +9,8 @@ public class Timer : MonoBehaviour
     [SerializeField] private Image _timerFill;
     private int _remainingDuration;
     public int Duration = 60;
+    public GameObject poisonGas;
+    public float poisonGasTime = 30f; // the time is 2 seconds longer than the animation of the particles
 
     private void Start() {
         Begin(Duration);
@@ -27,9 +29,19 @@ public class Timer : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         OnEnd();
+        yield break;
     }
 
     private void OnEnd() {
-        Debug.Log("Timer End");
+        StartCoroutine(StartPoisonGas());
+    }
+    
+    //! TODO: count down during the poison gas as well!!!
+    private IEnumerator StartPoisonGas() {
+        poisonGas.SetActive(true);
+        yield return new WaitForSeconds(poisonGasTime);
+        poisonGas.SetActive(false);
+        Begin(Duration);
+        yield break;
     }
 }

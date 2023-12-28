@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public Transform bulletSpawnPoint;
     public GameObject bulletPrefab;
-    public int bulletsLoaded;
-    public int maxBullets;
-    private int _bulletsLoaded;
-    [SerializeField] private int _maxBulletsLoaded = 5;
-    [SerializeField] private int _maxBulletsMagazine = 10;
-    private int _bulletsMagazine;
+    public int _bulletsLoaded;
+    public int _maxBulletsLoaded;
+    public int _maxBulletsMagazine;
+    public int _bulletsMagazine;
     private static BulletCountController bulletCountController;
     protected static GameObject bulletCountObject;
     private static bool isBulletCountInitialized = false;
+    public Vector3 realScale;
+
+    private Vector3 bulletSpawnPoint() {
+        return transform.position + transform.forward;
+    }
+
+    public void SetState(int maxBulletsLoaded, int maxBulletsMagazine, int bulletsLoaded, int bulletsMagazine) {
+        _maxBulletsLoaded = maxBulletsLoaded;
+        _maxBulletsMagazine = maxBulletsMagazine;
+        _bulletsLoaded = bulletsLoaded;
+        _bulletsMagazine = bulletsMagazine;
+        bulletCountController.RefreshBulletCount(_bulletsLoaded, _bulletsMagazine);
+    }
 
     void Awake() {
-        _bulletsLoaded = _maxBulletsLoaded;
-        _bulletsMagazine = _maxBulletsMagazine;
-        bulletSpawnPoint = this.transform;
         if(!isBulletCountInitialized) {
             bulletCountObject = GameObject.Find("BulletCount");
             bulletCountController = bulletCountObject.GetComponent<BulletCountController>();
@@ -29,11 +36,21 @@ public class Weapon : MonoBehaviour
         bulletCountController.RefreshBulletCount(_bulletsLoaded, _bulletsMagazine);
     }
 
+    void Update()
+    {
+        // Adjust the child's scale to compensate for the parent's scale
+        transform.localScale = new Vector3(
+            realScale.x / transform.parent.localScale.x,
+            realScale.y / transform.parent.localScale.y,
+            realScale.z / transform.parent.localScale.z
+        );
+    }
+
     public void Fire() {
         if(_bulletsLoaded > 0) {
             _bulletsLoaded --;
-            Bullet bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation).GetComponent<Bullet>();
-            bullet.SetDirection(bulletSpawnPoint.forward);
+            Bullet bullet = Instantiate(bulletPrefab, bulletSpawnPoint(), transform.rotation).GetComponent<Bullet>();
+            bullet.SetDirection(transform.parent.forward);
         }
         bulletCountController.RefreshBulletCount(_bulletsLoaded, _bulletsMagazine);
     }

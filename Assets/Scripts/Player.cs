@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     private float _criticalEnergy = 50f; // If you modify this, make sure to modify the gradient for the EnergyBar too (in Unity Editor)
     public Weapon weapon;
     private GameObject weaponObject;
+    public GameObject WeaponSupplierPrefab;
     
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
         _canSprint = true;
         weaponObject = GetWeaponObject();
         weapon = weaponObject.GetComponent<Weapon>();
-        DropWeapon();
+        DropWeapon(false);
     }
     void FixedUpdate() 
     {
@@ -74,26 +75,63 @@ public class Player : MonoBehaviour
         if(transform.position.y < 0.995f)
             transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
     }
-    private bool DropWeapon() {
+    private bool DropWeapon(bool createSupplier = true) {
         if(!hasWeapon())
             return false;
 
+        var maxBulletsLoaded = weapon._maxBulletsLoaded;
+        var maxBulletsMagazine = weapon._maxBulletsMagazine;
+        var bulletsLoaded = weapon._bulletsLoaded;
+        var bulletsMagazine = weapon._bulletsMagazine;
         weapon.MakeBulletCountDisable();
         weaponObject.transform.parent = null;
         DestroyImmediate(weaponObject);
         weapon = null;
+        weaponObject = null;
+
+        if(!createSupplier)
+            return true;
+
+        var droppedWeapon = Instantiate(
+            WeaponSupplierPrefab, 
+            transform.position + Vector3.up * 0.5f + transform.forward * 2, 
+            transform.rotation).GetComponent<WeaponSupplier>();
+
+        droppedWeapon.MaxBulletsLoaded = maxBulletsLoaded;
+        droppedWeapon.MaxBulletsMagazine = maxBulletsMagazine;
+        droppedWeapon.BulletsLoaded = bulletsLoaded;
+        droppedWeapon.BulletsMagazine = bulletsMagazine;
+
         return true;
     }
 
-    public bool PickUpWeapon(GameObject weaponPrefab) {
+    public bool PickUpWeapon(
+        GameObject weaponPrefab, 
+        int maxBulletsLoaded, 
+        int maxBulletsMagazine, 
+        int bulletsLoaded, 
+        int bulletsMagazine) 
+    {
+
         if(hasWeapon())
             return false;
 
-        weaponObject = Instantiate(weaponPrefab, transform.position, transform.rotation, transform);
+        var weaponSpawnPoint = 
+        transform.position + 
+        transform.forward * transform.localScale.z / 2 + 
+        transform.right * transform.localScale.x / 2;
+
+        weaponObject = Instantiate(weaponPrefab, weaponSpawnPoint, transform.rotation, transform);
         weapon = weaponObject.GetComponent<Weapon>();
+        weapon.SetState(maxBulletsLoaded, maxBulletsMagazine, bulletsLoaded, bulletsMagazine);
         weapon.MakeBulletCountEnable();
         return true;
     }
+
+    private void OnParticleCollision(GameObject other) {
+        Debug.Log("Particle collision with " + other.name);
+    }
+
 
     public void TakeDamage(float damage)
     {

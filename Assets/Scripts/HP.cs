@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HP : MonoBehaviour
 {
-    public float hp = 10f;
+    public float hp = 15f;
 
     private void OnCollisionEnter(Collision collision)
     {
