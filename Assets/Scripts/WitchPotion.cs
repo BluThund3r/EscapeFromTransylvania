@@ -7,15 +7,12 @@ public class WitchPotion : GravityProjectile
     public GameObject poisonAreaPrefab;
     private void Start() {
         projectileSpeed = 8f;
-        SetDamage(0.1f);
+        SetDamage(0.15f);
     }
 
     protected void OnTriggerEnter(Collider other)
     {
-        if( other.gameObject.layer == LayerMask.NameToLayer("WhatIsGround") ||
-            other.gameObject.layer == LayerMask.NameToLayer("Obstacles") || 
-            other.gameObject.layer == LayerMask.NameToLayer("Player") ||
-            other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if( other.gameObject.layer == LayerMask.NameToLayer("WhatIsGround"))
         {
             SummonPoisonArea();
             Destroy(gameObject);

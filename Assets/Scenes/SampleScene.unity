@@ -2790,11 +2790,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6465793361393427590, guid: 7bba1e47fdeb15c489ad36223abbe108, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6465793361393427590, guid: 7bba1e47fdeb15c489ad36223abbe108, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7452099128507532106, guid: 7bba1e47fdeb15c489ad36223abbe108, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2838,11 +2838,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8646998998094644828, guid: 7bba1e47fdeb15c489ad36223abbe108, type: 3}
       propertyPath: m_Name
-      value: Witch (1)
+      value: Witch
       objectReference: {fileID: 0}
     - target: {fileID: 8646998998094644828, guid: 7bba1e47fdeb15c489ad36223abbe108, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
