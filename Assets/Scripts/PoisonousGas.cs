@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PoisonousGas : Harmful
 {
+    private void Start() {
+        SetDamage(0.3f);
+    }
+
     public override float GetDamage()
     {
         return this.Damage;

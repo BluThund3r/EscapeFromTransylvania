@@ -7,41 +7,48 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] private Text _timerText;
     [SerializeField] private Image _timerFill;
+    public Text GasState;
     private int _remainingDuration;
-    public int Duration = 60;
     public GameObject poisonGas;
-    public float poisonGasTime = 30f; // the time is 2 seconds longer than the animation of the particles
+    public int poisonGasTime = 30; // the time is 2 seconds longer than the animation of the particles
+    public int noGasTime = 10; // the full duration of the timer until the poison gas starts (in seconds)
+    private bool isGasActive = false;
 
     private void Start() {
-        Begin(Duration);
+        Begin(noGasTime);
     }
 
-    private void Begin(int Second) {
-        _remainingDuration = Second;
-        StartCoroutine(UpdateTimer());
+    private void Begin(int duration) {
+        if(isGasActive) {
+            GasState.text = "of GAS";
+        } else {
+            GasState.text = "till GAS";
+        }
+        StartCoroutine(UpdateTimer(duration));
     }
 
-    private IEnumerator UpdateTimer() {
+    private IEnumerator UpdateTimer(int duration) {
+        _remainingDuration = duration;
         while(_remainingDuration >= 0) {
             _timerText.text = $"{_remainingDuration / 60:00}:{_remainingDuration % 60:00}"; 
-            _timerFill.fillAmount = Mathf.InverseLerp(0, Duration, _remainingDuration);
+            _timerFill.fillAmount = Mathf.InverseLerp(0, duration, _remainingDuration);
             _remainingDuration --;
             yield return new WaitForSeconds(1f);
         }
+        yield return new WaitForSeconds(1f);
         OnEnd();
         yield break;
     }
 
     private void OnEnd() {
-        StartCoroutine(StartPoisonGas());
-    }
-    
-    //! TODO: count down during the poison gas as well!!!
-    private IEnumerator StartPoisonGas() {
-        poisonGas.SetActive(true);
-        yield return new WaitForSeconds(poisonGasTime);
-        poisonGas.SetActive(false);
-        Begin(Duration);
-        yield break;
+        isGasActive = !isGasActive;
+        if(isGasActive) {
+            poisonGas.SetActive(true);
+            Begin(poisonGasTime);
+        }
+        else {
+            poisonGas.SetActive(false);
+            Begin(noGasTime);
+        }
     }
 }
