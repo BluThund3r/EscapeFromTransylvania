@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Video;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
     private Rigidbody rb;
@@ -20,6 +22,8 @@ public class Player : MonoBehaviour
     private float _sprintHeal = 0.15f; // The amount that is added to the energy bar when not sprinting
     private float _criticalEnergy = 50f; // If you modify this, make sure to modify the gradient for the EnergyBar too (in Unity Editor)
     public Weapon weapon;
+    private GameObject weaponObject;
+    public GameObject WeaponSupplierPrefab;
     
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -32,26 +36,110 @@ public class Player : MonoBehaviour
         _healthBar.SetMaxHealth(_maxHealth);
         _energyBar.SetMaxEnergy(_maxEnergy);
         _canSprint = true;
+        weaponObject = GetWeaponObject();
+        weapon = weaponObject.GetComponent<Weapon>();
+        DropWeapon(false);
     }
     void FixedUpdate() 
     {
         MovePlayer();
     }
 
+    private GameObject GetWeaponObject() {
+        for(int i = 0; i < transform.childCount; i++) {
+            if(transform.GetChild(i).CompareTag("Weapon")) {
+                return transform.GetChild(i).gameObject;
+            }
+        }
+        return null;
+    }
+
     void Update(){
         LookAtMouse();
         _energyBar.SetEnergy(_currentEnergy);
-        // Test damage
-        if(Input.GetKeyDown(KeyCode.Space)){
-            weapon.Fire();
-        }
-        if(Input.GetKeyDown(KeyCode.R)){
-            weapon.Reload();
+        
+        if(this.hasWeapon()) {
+            if(Input.GetMouseButtonDown(0))
+                weapon.Fire();
+
+            else if(Input.GetKeyDown(KeyCode.R))
+                weapon.Reload();
+
+            else if (Input.GetKeyDown(KeyCode.Q))
+                DropWeapon();
         }
     }
 
-    private void TakeDamage(float damage)
+    void LateUpdate(){
+        // make sure player stays on the ground
+        if(transform.position.y < 0.995f)
+            transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+    }
+    private bool DropWeapon(bool createSupplier = true) {
+        if(!hasWeapon())
+            return false;
+
+        var maxBulletsLoaded = weapon._maxBulletsLoaded;
+        var maxBulletsMagazine = weapon._maxBulletsMagazine;
+        var bulletsLoaded = weapon._bulletsLoaded;
+        var bulletsMagazine = weapon._bulletsMagazine;
+        weapon.MakeBulletCountDisable();
+        weaponObject.transform.parent = null;
+        DestroyImmediate(weaponObject);
+        weapon = null;
+        weaponObject = null;
+
+        if(!createSupplier)
+            return true;
+
+        var droppedWeapon = Instantiate(
+            WeaponSupplierPrefab, 
+            transform.position + Vector3.up * 0.5f + transform.forward * 2, 
+            transform.rotation).GetComponent<WeaponSupplier>();
+
+        droppedWeapon.MaxBulletsLoaded = maxBulletsLoaded;
+        droppedWeapon.MaxBulletsMagazine = maxBulletsMagazine;
+        droppedWeapon.BulletsLoaded = bulletsLoaded;
+        droppedWeapon.BulletsMagazine = bulletsMagazine;
+
+        return true;
+    }
+
+    public bool PickUpWeapon(
+        GameObject weaponPrefab, 
+        int maxBulletsLoaded, 
+        int maxBulletsMagazine, 
+        int bulletsLoaded, 
+        int bulletsMagazine) 
     {
+
+        if(hasWeapon())
+            return false;
+
+        var weaponSpawnPoint = 
+        transform.position + 
+        transform.forward * transform.localScale.z / 2 + 
+        transform.right * transform.localScale.x / 2;
+
+        weaponObject = Instantiate(weaponPrefab, weaponSpawnPoint, transform.rotation, transform);
+        weapon = weaponObject.GetComponent<Weapon>();
+        weapon.SetState(maxBulletsLoaded, maxBulletsMagazine, bulletsLoaded, bulletsMagazine);
+        weapon.MakeBulletCountEnable();
+        return true;
+    }
+
+    private void OnParticleCollision(GameObject other) {
+        Debug.Log("Particle collision with " + other.name);
+    }
+
+
+    public void TakeDamage(float damage)
+    {
+        if(_currentHealth <= 0f) {
+            //Die();
+            return;
+        }
+        
         _currentHealth -= damage;
         _healthBar.SetHealth(_currentHealth);
     }
@@ -102,5 +190,24 @@ public class Player : MonoBehaviour
         return Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0;
     }
 
-    
+    private bool hasWeapon() {
+        return weaponObject != null;
+    }
+
+    public void Heal(float hp)
+    {
+        if(_currentHealth >= _maxHealth)
+            return;
+        _currentHealth = Math.Min(_currentHealth + hp, _maxHealth);
+        _healthBar.SetHealth(_currentHealth);
+    }
+
+    public void RegenEnergy(float ep)
+    {
+        if(_currentEnergy >= _maxEnergy)
+            return;
+
+        _currentEnergy = Math.Min(_currentEnergy + ep, _maxEnergy);
+        _energyBar.SetEnergy(_currentEnergy);
+    }
 }

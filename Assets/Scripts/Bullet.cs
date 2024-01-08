@@ -1,25 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class Bullet : MonoBehaviour
+public class Bullet : Projectile
 {
-    public float life = 3f;
-    public float bulletSpeed = 10;
-
-    void Start()
+    void Awake()
     {
-        Destroy(gameObject, life);
+        SetDamage(20f);
     }
 
-    void FixedUpdate() 
-    {
-        gameObject.GetComponent<Rigidbody>().velocity = gameObject.transform.forward * bulletSpeed;
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        Destroy(gameObject);
-    }
 }

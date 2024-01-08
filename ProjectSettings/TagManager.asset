@@ -3,21 +3,24 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Weapon
+  - Harmful
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - WhatIsGround
   - Water
   - UI
   - Player
-  - Bullet
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Obstacles
+  - Enemy
+  - PlayerBullets
+  - EnemyBullets
+  - MobDrops
+  - Splashed
   - 
   - 
   - 
