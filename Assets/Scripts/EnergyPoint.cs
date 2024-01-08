@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnergyPoint : MonoBehaviour
 {
-    public float ep = 10f;
+    public float ep = 15f;
 
     private void OnCollisionEnter(Collision collision)
     {

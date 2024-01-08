@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 8036274368327600038}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.42, y: 0.5, z: 0}
-  m_LocalScale: {x: 3, y: 1, z: 3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -118,4 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74114460f99189147823646587e7579d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponPrefab: {fileID: 1298278722732931347, guid: 1654fc42656b14b4b88e8ca4ff0b2202, type: 3}
+  WeaponPrefab: {fileID: 1915890477713073144, guid: 9d09f5f62cf82c0438ef9a59501062ed, type: 3}
+  RotationSpeed: 50
+  BobbingSpeed: 5
+  Amplitude: 0.25
