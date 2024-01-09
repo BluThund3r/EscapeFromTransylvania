@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class BulletCountController : MonoBehaviour
+public class GrenadeCounter : MonoBehaviour
 {
-    [SerializeField] private Text _bulletCountText;
+    [SerializeField] private Text grenadeCountText;
 
-    [SerializeField] private Image bulletIcon;
+    [SerializeField] private Image grenadeIcon;
 
     public Color UnfocusColor;
     public Color FocusColor;
@@ -22,21 +19,25 @@ public class BulletCountController : MonoBehaviour
         unfocusedX = focusedX - (1f - UnfocusScale.x) * focusedX;
     }
 
-    public void RefreshBulletCount(int bulletsLoaded, int bulletsMagazine) {
-        _bulletCountText.text = $"{bulletsLoaded}/{bulletsMagazine}";
+    public void RefreshGrenadeCounter(int grenadesLeft, int maxGrenades) {
+        grenadeCountText.text = $"{grenadesLeft}/{maxGrenades}";
+    }
+
+    public void SetActive(bool state) {
+        gameObject.SetActive(state);
     }
 
     public void Unfocus() {
         transform.localScale = UnfocusScale;
-        transform.position = new Vector3(unfocusedX, transform.position.y, transform.position.z); 
-        _bulletCountText.color = UnfocusColor;
-        bulletIcon.color = UnfocusColor;
+        transform.position = new Vector3(unfocusedX, transform.position.y, transform.position.z);
+        grenadeCountText.color = UnfocusColor;
+        grenadeIcon.color = UnfocusColor;
     }
 
     public void Focus() {
         transform.localScale = FocusScale;
         transform.position = new Vector3(focusedX, transform.position.y, transform.position.z);
-        _bulletCountText.color = FocusColor;
-        bulletIcon.color = FocusColor;
+        grenadeCountText.color = FocusColor;
+        grenadeIcon.color = FocusColor;
     }
 }

@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Video;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(TrajectoryPredictor))]
 public class Player : MonoBehaviour
 {
     private Rigidbody rb;
@@ -21,9 +19,19 @@ public class Player : MonoBehaviour
     private float _sprintCost = 0.3f; // The amount that is subtracted from the energy bar when sprinting
     private float _sprintHeal = 0.15f; // The amount that is added to the energy bar when not sprinting
     private float _criticalEnergy = 50f; // If you modify this, make sure to modify the gradient for the EnergyBar too (in Unity Editor)
+    private int grenadeNumber = 0;
+    public int maxGrenadeNumber = 10;
+    private int attackSelection = 0;
+    public float minGrenadeRange = 2f;
+    public float maxGrenadeRange = 15f;
+    private TrajectoryPredictor trajectoryPredictor;
+    public GrenadeCounter GrenadeCounter;
     public Weapon weapon;
     private GameObject weaponObject;
     public GameObject WeaponSupplierPrefab;
+    public GameObject GrenadePrefab;
+    public float grenadeThrowAngle = 30f;
+    public float timeOfGrenadeFlight = 2f;
     
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -39,6 +47,8 @@ public class Player : MonoBehaviour
         weaponObject = GetWeaponObject();
         weapon = weaponObject.GetComponent<Weapon>();
         DropWeapon(false);
+        GrenadeCounter.SetActive(false);
+        trajectoryPredictor = GetComponent<TrajectoryPredictor>();
     }
     void FixedUpdate() 
     {
@@ -57,8 +67,27 @@ public class Player : MonoBehaviour
     void Update(){
         LookAtMouse();
         _energyBar.SetEnergy(_currentEnergy);
+
+        if(attackSelection == 0) {
+            trajectoryPredictor.HideTrajectory();
+        }
         
-        if(this.hasWeapon()) {
+        if(Input.GetKeyDown(KeyCode.Alpha1) && this.hasWeapon()) {
+            attackSelection = 1;
+            weapon.FocusBulletCount();
+            GrenadeCounter.Unfocus();
+            trajectoryPredictor.HideTrajectory();
+        }
+            
+        else if(Input.GetKeyDown(KeyCode.Alpha2) && this.hasGrenades()) {
+            attackSelection = 2;
+            if(hasWeapon())
+                weapon.UnfocusBulletCount();
+            GrenadeCounter.Focus();
+        }
+
+             
+        if(attackSelection == 1 && this.hasWeapon()) {
             if(Input.GetMouseButtonDown(0))
                 weapon.Fire();
 
@@ -68,6 +97,80 @@ public class Player : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Q))
                 DropWeapon();
         }
+
+        if(attackSelection == 2 && hasGrenades()) { 
+            if(trajectoryPredictor.IsTargetInRange(minGrenadeRange, maxGrenadeRange)) {
+                trajectoryPredictor.MoveTargetToMouse();
+                trajectoryPredictor.ShowTrajectory(transform.position, trajectoryPredictor.GetTargetPosition(), grenadeThrowAngle);
+            } else {
+                trajectoryPredictor.HideTrajectory();
+            }
+            if(Input.GetMouseButtonDown((int)MouseButton.Left))
+                ThrowGrenade(transform.position + transform.forward, trajectoryPredictor.GetTargetPosition(), grenadeThrowAngle);
+        }
+    }
+
+    private bool hasGrenades() {
+        return grenadeNumber > 0;
+    }
+
+    private void ThrowGrenade(Vector3 startPosition, Vector3 targetPosition, float angleDeg) {
+        // Vector3 p = targetPosition;
+
+        // float gravity = Physics.gravity.magnitude;
+        // float heightDifference = p.y - transform.position.y;
+
+        // float radianAngle = angleDeg * Mathf.Deg2Rad;
+
+        // // Calculate the distance to the target
+        // Vector3 planarTarget = new Vector3(p.x, 0, p.z);
+        // Vector3 planarPostion = new Vector3(transform.position.x, 0, transform.position.z);
+
+        // float distance = Vector3.Distance(planarTarget, planarPostion);
+        // float yOffset = transform.position.y - p.y;
+
+        // float initialVelocity = (1 / Mathf.Cos(radianAngle)) * Mathf.Sqrt((0.5f * gravity * Mathf.Pow(distance, 2)) / (distance * Mathf.Tan(radianAngle) + yOffset));
+
+        // Vector3 velocity = new Vector3(0f, initialVelocity * Mathf.Sin(radianAngle), initialVelocity * Mathf.Cos(radianAngle));
+
+        // // Rotate our velocity to match the direction between the player and the target.
+        // float angleBetweenObjects = Vector3.SignedAngle(Vector3.forward, planarTarget - planarPostion, Vector3.up);
+        // Vector3 finalVelocity = Quaternion.AngleAxis(angleBetweenObjects, Vector3.up) * velocity;
+
+        var planarTarget = new Vector3(targetPosition.x, 0, targetPosition.z);
+        var planarPosition = new Vector3(startPosition.x, 0, startPosition.z);
+        var distance = Vector3.Distance(planarTarget, planarPosition);
+        var initialSpeed = distance / timeOfGrenadeFlight;
+
+        var horizontalNormalized = (planarTarget - planarPosition).normalized;
+        var rotationAxis = Vector3.Cross(horizontalNormalized, Vector3.up);
+        var direction = Quaternion.AngleAxis(angleDeg, rotationAxis) * horizontalNormalized;
+        var finalVelocity = direction * initialSpeed;
+
+        var grenadeRb = Instantiate(GrenadePrefab, startPosition, Quaternion.identity).GetComponent<Rigidbody>();
+        grenadeRb.velocity = finalVelocity;
+
+        grenadeNumber--;
+
+        GrenadeCounter.RefreshGrenadeCounter(grenadeNumber, maxGrenadeNumber);
+
+        if(!hasGrenades())
+            GrenadeCounter.SetActive(false);
+    }
+
+    public bool PickUpGrenade() {
+        if(grenadeNumber == maxGrenadeNumber)
+            return false;
+        
+        grenadeNumber++;
+        GrenadeCounter.RefreshGrenadeCounter(grenadeNumber, maxGrenadeNumber);
+        if(grenadeNumber == 1) {
+            GrenadeCounter.SetActive(true);
+            GrenadeCounter.Unfocus();
+        }
+            
+        
+        return true;
     }
 
     void LateUpdate(){
@@ -102,6 +205,8 @@ public class Player : MonoBehaviour
         droppedWeapon.BulletsLoaded = bulletsLoaded;
         droppedWeapon.BulletsMagazine = bulletsMagazine;
 
+        attackSelection = 0;
+
         return true;
     }
 
@@ -125,6 +230,7 @@ public class Player : MonoBehaviour
         weapon = weaponObject.GetComponent<Weapon>();
         weapon.SetState(maxBulletsLoaded, maxBulletsMagazine, bulletsLoaded, bulletsMagazine);
         weapon.MakeBulletCountEnable();
+        weapon.UnfocusBulletCount();
         return true;
     }
 
