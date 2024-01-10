@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4450162039384692854}
   - component: {fileID: 3947775738909703663}
   - component: {fileID: 8749576781170669058}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: WeaponSupplier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74114460f99189147823646587e7579d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxBulletsMagazine: 0
+  MaxBulletsLoaded: 0
+  BulletsLoaded: 0
+  BulletsMagazine: 0
   WeaponPrefab: {fileID: 1915890477713073144, guid: 9d09f5f62cf82c0438ef9a59501062ed, type: 3}
   RotationSpeed: 50
   BobbingSpeed: 5

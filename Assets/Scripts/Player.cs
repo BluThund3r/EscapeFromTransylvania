@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -32,6 +33,8 @@ public class Player : MonoBehaviour
     public GameObject GrenadePrefab;
     public float grenadeThrowAngle = 30f;
     public float timeOfGrenadeFlight = 2f;
+    private bool grenadeThrown = false;
+    public float GrenadeCooldown = 4f;
     
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -49,6 +52,8 @@ public class Player : MonoBehaviour
         DropWeapon(false);
         GrenadeCounter.SetActive(false);
         trajectoryPredictor = GetComponent<TrajectoryPredictor>();
+        Cursor.visible = false;
+        Cursor.visible = true;
     }
     void FixedUpdate() 
     {
@@ -68,13 +73,9 @@ public class Player : MonoBehaviour
         return transform.position + transform.forward * transform.localScale.x;
     }
 
-    void Update(){
+    void Update() {
         LookAtMouse();
         _energyBar.SetEnergy(_currentEnergy);
-
-        if(attackSelection == 0) {
-            trajectoryPredictor.HideTrajectory();
-        }
         
         if(Input.GetKeyDown(KeyCode.Alpha1) && this.hasWeapon()) {
             attackSelection = 1;
@@ -89,9 +90,17 @@ public class Player : MonoBehaviour
                 weapon.UnfocusBulletCount();
             GrenadeCounter.Focus();
         }
+        else if(!hasWeapon() && !hasGrenades())
+            attackSelection = 0;
 
-             
+
+        if(attackSelection == 0) {
+            Cursor.visible = true;
+            trajectoryPredictor.HideTrajectory();
+        }     
+        
         if(attackSelection == 1 && this.hasWeapon()) {
+            Cursor.visible = true;
             if(Input.GetMouseButtonDown(0))
                 weapon.Fire();
 
@@ -103,14 +112,17 @@ public class Player : MonoBehaviour
         }
 
         if(attackSelection == 2 && hasGrenades()) { 
-            if(trajectoryPredictor.IsTargetInRange(minGrenadeRange, maxGrenadeRange)) {
-                trajectoryPredictor.MoveTargetToMouse();
-                trajectoryPredictor.ShowTrajectory(transform.position, trajectoryPredictor.GetTargetPosition(), grenadeThrowAngle);
+            if(trajectoryPredictor.IsTargetInRange(minGrenadeRange, maxGrenadeRange) && !grenadeThrown) {
+                Cursor.visible = false;
+                trajectoryPredictor.ShowTrajectory(transform.position, trajectoryPredictor.GetMouseHit(), grenadeThrowAngle);
             } else {
+                Cursor.visible = true;
                 trajectoryPredictor.HideTrajectory();
             }
-            if(Input.GetMouseButtonDown((int)MouseButton.Left) && trajectoryPredictor.IsTargetInRange(minGrenadeRange, maxGrenadeRange))
-                ThrowGrenade(grenadeThrowAngle);
+            if(Input.GetMouseButtonDown((int)MouseButton.Left) && 
+                trajectoryPredictor.IsTargetInRange(minGrenadeRange, maxGrenadeRange) &&
+                !grenadeThrown)
+                StartCoroutine(ThrowGrenade(grenadeThrowAngle));
         }
     }
 
@@ -118,17 +130,28 @@ public class Player : MonoBehaviour
         return grenadeNumber > 0;
     }
 
-    private void ThrowGrenade(float angleDeg) {
+    private IEnumerator ThrowGrenade(float angleDeg) {
+        grenadeThrown = true;
         var grenadeSpawnPoint = GetGrenadeSpawnPoint();
         var grenadeRb = Instantiate(GrenadePrefab, grenadeSpawnPoint, Quaternion.identity).GetComponent<Rigidbody>();
-        grenadeRb.AddForce(trajectoryPredictor.CalcGrenadeVelocity(grenadeSpawnPoint, angleDeg), ForceMode.Impulse);
+        grenadeRb.AddForce(trajectoryPredictor.CalcGrenadeVelocity(
+            grenadeSpawnPoint, 
+            trajectoryPredictor.GetMouseHit().point, 
+            angleDeg), ForceMode.Impulse);
 
         grenadeNumber--;
 
         GrenadeCounter.RefreshGrenadeCounter(grenadeNumber, maxGrenadeNumber);
 
-        if(!hasGrenades())
+        if(!hasGrenades()) {
             GrenadeCounter.SetActive(false);
+            attackSelection = 0;
+        }
+
+        
+        yield return new WaitForSeconds(GrenadeCooldown);
+        grenadeThrown = false;
+        yield break;
     }
 
     public bool PickUpGrenade() {

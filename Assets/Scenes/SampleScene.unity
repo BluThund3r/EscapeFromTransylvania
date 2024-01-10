@@ -564,6 +564,8 @@ MonoBehaviour:
   WeaponSupplierPrefab: {fileID: 8036274368327600038, guid: 1bfa3628f34d84148bef0086d44bcdb1, type: 3}
   GrenadePrefab: {fileID: 2804416469888662218, guid: 573d0e2badee53940b7a7137b1f46f67, type: 3}
   grenadeThrowAngle: 30
+  timeOfGrenadeFlight: 2
+  GrenadeCooldown: 4
 --- !u!65 &39475084
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -704,7 +706,14 @@ MonoBehaviour:
   layerMaskToHit:
     serializedVersion: 2
     m_Bits: 136
+  TrajectoryLayerMask:
+    serializedVersion: 2
+    m_Bits: 457
   target: {fileID: 541341824}
+  maxPoints: 200
+  grenadeRb: {fileID: 4287942353999720779, guid: 573d0e2badee53940b7a7137b1f46f67, type: 3}
+  increment: 0.025
+  rayOverlap: 1.1
 --- !u!1 &76340273
 GameObject:
   m_ObjectHideFlags: 0
