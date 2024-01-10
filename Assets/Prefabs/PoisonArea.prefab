@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7861424465912632325}
   - component: {fileID: 3632195664308602770}
   - component: {fileID: 2930037635273284527}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PoisonArea
   m_TagString: Harmful
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 3547490188829981941}
   - component: {fileID: 7683696622853677119}
   - component: {fileID: 4566678753836653164}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PoisonParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

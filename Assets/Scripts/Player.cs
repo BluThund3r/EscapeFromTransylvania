@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Video;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(TrajectoryPredictor))]
 public class Player : MonoBehaviour
 {
     private Rigidbody rb;
@@ -21,9 +20,21 @@ public class Player : MonoBehaviour
     private float _sprintCost = 0.3f; // The amount that is subtracted from the energy bar when sprinting
     private float _sprintHeal = 0.15f; // The amount that is added to the energy bar when not sprinting
     private float _criticalEnergy = 50f; // If you modify this, make sure to modify the gradient for the EnergyBar too (in Unity Editor)
+    private int grenadeNumber = 0;
+    public int maxGrenadeNumber = 10;
+    private int attackSelection = 0;
+    public float minGrenadeRange = 2f;
+    public float maxGrenadeRange = 15f;
+    private TrajectoryPredictor trajectoryPredictor;
+    public GrenadeCounter GrenadeCounter;
     public Weapon weapon;
     private GameObject weaponObject;
     public GameObject WeaponSupplierPrefab;
+    public GameObject GrenadePrefab;
+    public float grenadeThrowAngle = 30f;
+    public float timeOfGrenadeFlight = 2f;
+    private bool grenadeThrown = false;
+    public float GrenadeCooldown = 4f;
     
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -39,6 +50,10 @@ public class Player : MonoBehaviour
         weaponObject = GetWeaponObject();
         weapon = weaponObject.GetComponent<Weapon>();
         DropWeapon(false);
+        GrenadeCounter.SetActive(false);
+        trajectoryPredictor = GetComponent<TrajectoryPredictor>();
+        Cursor.visible = false;
+        Cursor.visible = true;
     }
     void FixedUpdate() 
     {
@@ -54,11 +69,38 @@ public class Player : MonoBehaviour
         return null;
     }
 
-    void Update(){
+    private Vector3 GetGrenadeSpawnPoint() {
+        return transform.position + transform.forward * transform.localScale.x;
+    }
+
+    void Update() {
         LookAtMouse();
         _energyBar.SetEnergy(_currentEnergy);
         
-        if(this.hasWeapon()) {
+        if(Input.GetKeyDown(KeyCode.Alpha1) && this.hasWeapon()) {
+            attackSelection = 1;
+            weapon.FocusBulletCount();
+            GrenadeCounter.Unfocus();
+            trajectoryPredictor.HideTrajectory();
+        }
+            
+        else if(Input.GetKeyDown(KeyCode.Alpha2) && this.hasGrenades()) {
+            attackSelection = 2;
+            if(hasWeapon())
+                weapon.UnfocusBulletCount();
+            GrenadeCounter.Focus();
+        }
+        else if(!hasWeapon() && !hasGrenades())
+            attackSelection = 0;
+
+
+        if(attackSelection == 0) {
+            Cursor.visible = true;
+            trajectoryPredictor.HideTrajectory();
+        }     
+        
+        if(attackSelection == 1 && this.hasWeapon()) {
+            Cursor.visible = true;
             if(Input.GetMouseButtonDown(0))
                 weapon.Fire();
 
@@ -68,6 +110,63 @@ public class Player : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Q))
                 DropWeapon();
         }
+
+        if(attackSelection == 2 && hasGrenades()) { 
+            if(trajectoryPredictor.IsTargetInRange(minGrenadeRange, maxGrenadeRange) && !grenadeThrown) {
+                Cursor.visible = false;
+                trajectoryPredictor.ShowTrajectory(transform.position, trajectoryPredictor.GetMouseHit(), grenadeThrowAngle);
+            } else {
+                Cursor.visible = true;
+                trajectoryPredictor.HideTrajectory();
+            }
+            if(Input.GetMouseButtonDown((int)MouseButton.Left) && 
+                trajectoryPredictor.IsTargetInRange(minGrenadeRange, maxGrenadeRange) &&
+                !grenadeThrown)
+                StartCoroutine(ThrowGrenade(grenadeThrowAngle));
+        }
+    }
+
+    private bool hasGrenades() {
+        return grenadeNumber > 0;
+    }
+
+    private IEnumerator ThrowGrenade(float angleDeg) {
+        grenadeThrown = true;
+        var grenadeSpawnPoint = GetGrenadeSpawnPoint();
+        var grenadeRb = Instantiate(GrenadePrefab, grenadeSpawnPoint, Quaternion.identity).GetComponent<Rigidbody>();
+        grenadeRb.AddForce(trajectoryPredictor.CalcGrenadeVelocity(
+            grenadeSpawnPoint, 
+            trajectoryPredictor.GetMouseHit().point, 
+            angleDeg), ForceMode.Impulse);
+
+        grenadeNumber--;
+
+        GrenadeCounter.RefreshGrenadeCounter(grenadeNumber, maxGrenadeNumber);
+
+        if(!hasGrenades()) {
+            GrenadeCounter.SetActive(false);
+            attackSelection = 0;
+        }
+
+        
+        yield return new WaitForSeconds(GrenadeCooldown);
+        grenadeThrown = false;
+        yield break;
+    }
+
+    public bool PickUpGrenade() {
+        if(grenadeNumber == maxGrenadeNumber)
+            return false;
+        
+        grenadeNumber++;
+        GrenadeCounter.RefreshGrenadeCounter(grenadeNumber, maxGrenadeNumber);
+        if(grenadeNumber == 1) {
+            GrenadeCounter.SetActive(true);
+            GrenadeCounter.Unfocus();
+        }
+            
+        
+        return true;
     }
 
     void LateUpdate(){
@@ -102,6 +201,8 @@ public class Player : MonoBehaviour
         droppedWeapon.BulletsLoaded = bulletsLoaded;
         droppedWeapon.BulletsMagazine = bulletsMagazine;
 
+        attackSelection = 0;
+
         return true;
     }
 
@@ -125,6 +226,7 @@ public class Player : MonoBehaviour
         weapon = weaponObject.GetComponent<Weapon>();
         weapon.SetState(maxBulletsLoaded, maxBulletsMagazine, bulletsLoaded, bulletsMagazine);
         weapon.MakeBulletCountEnable();
+        weapon.UnfocusBulletCount();
         return true;
     }
 

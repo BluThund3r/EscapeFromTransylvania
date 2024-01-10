@@ -71,4 +71,12 @@ public class Weapon : MonoBehaviour
     public void MakeBulletCountEnable() {
         bulletCountObject.SetActive(true);
     }
+
+    public void FocusBulletCount() {
+        bulletCountController.Focus();
+    }
+
+    public void UnfocusBulletCount() {
+        bulletCountController.Unfocus();
+    }
 }
