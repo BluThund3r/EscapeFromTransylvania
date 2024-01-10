@@ -5,9 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Grenade : GravityProjectile
 {
-    public float ExplosionRadius = 5f;
+    public float ExplosionRadius = 2.5f;
     public float ExplosionDamage = 50f;
     public float ExplosionDelay = 3f;
+    public float ParticleStartSize = 4f;
     public GameObject ExplosionPrefab;
     public GameObject DamageSpherePrefab;
     public Rigidbody grenadeRb;
@@ -25,8 +26,9 @@ public class Grenade : GravityProjectile
         var damageSphere = Instantiate(DamageSpherePrefab, transform.position, Quaternion.identity).GetComponent<DamageSphere>();
         damageSphere.SetRadius(ExplosionRadius);
         damageSphere.SetDamage(ExplosionDamage);
-        var explosion = Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
-        Destroy(explosion, 2f);
+        var explosion = Instantiate(ExplosionPrefab, transform.position, Quaternion.identity).GetComponent<Explosion>();
+        explosion.SetParticleStartSize(ParticleStartSize);
+        Destroy(explosion.gameObject, 2f);
         Destroy(damageSphere.gameObject, 0.5f);
         Destroy(gameObject);
     }
