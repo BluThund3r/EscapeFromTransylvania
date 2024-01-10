@@ -64,6 +64,10 @@ public class Player : MonoBehaviour
         return null;
     }
 
+    private Vector3 GetGrenadeSpawnPoint() {
+        return transform.position + transform.forward * transform.localScale.x;
+    }
+
     void Update(){
         LookAtMouse();
         _energyBar.SetEnergy(_currentEnergy);
@@ -105,8 +109,8 @@ public class Player : MonoBehaviour
             } else {
                 trajectoryPredictor.HideTrajectory();
             }
-            if(Input.GetMouseButtonDown((int)MouseButton.Left))
-                ThrowGrenade(transform.position + transform.forward, trajectoryPredictor.GetTargetPosition(), grenadeThrowAngle);
+            if(Input.GetMouseButtonDown((int)MouseButton.Left) && trajectoryPredictor.IsTargetInRange(minGrenadeRange, maxGrenadeRange))
+                ThrowGrenade(grenadeThrowAngle);
         }
     }
 
@@ -114,41 +118,10 @@ public class Player : MonoBehaviour
         return grenadeNumber > 0;
     }
 
-    private void ThrowGrenade(Vector3 startPosition, Vector3 targetPosition, float angleDeg) {
-        // Vector3 p = targetPosition;
-
-        // float gravity = Physics.gravity.magnitude;
-        // float heightDifference = p.y - transform.position.y;
-
-        // float radianAngle = angleDeg * Mathf.Deg2Rad;
-
-        // // Calculate the distance to the target
-        // Vector3 planarTarget = new Vector3(p.x, 0, p.z);
-        // Vector3 planarPostion = new Vector3(transform.position.x, 0, transform.position.z);
-
-        // float distance = Vector3.Distance(planarTarget, planarPostion);
-        // float yOffset = transform.position.y - p.y;
-
-        // float initialVelocity = (1 / Mathf.Cos(radianAngle)) * Mathf.Sqrt((0.5f * gravity * Mathf.Pow(distance, 2)) / (distance * Mathf.Tan(radianAngle) + yOffset));
-
-        // Vector3 velocity = new Vector3(0f, initialVelocity * Mathf.Sin(radianAngle), initialVelocity * Mathf.Cos(radianAngle));
-
-        // // Rotate our velocity to match the direction between the player and the target.
-        // float angleBetweenObjects = Vector3.SignedAngle(Vector3.forward, planarTarget - planarPostion, Vector3.up);
-        // Vector3 finalVelocity = Quaternion.AngleAxis(angleBetweenObjects, Vector3.up) * velocity;
-
-        var planarTarget = new Vector3(targetPosition.x, 0, targetPosition.z);
-        var planarPosition = new Vector3(startPosition.x, 0, startPosition.z);
-        var distance = Vector3.Distance(planarTarget, planarPosition);
-        var initialSpeed = distance / timeOfGrenadeFlight;
-
-        var horizontalNormalized = (planarTarget - planarPosition).normalized;
-        var rotationAxis = Vector3.Cross(horizontalNormalized, Vector3.up);
-        var direction = Quaternion.AngleAxis(angleDeg, rotationAxis) * horizontalNormalized;
-        var finalVelocity = direction * initialSpeed;
-
-        var grenadeRb = Instantiate(GrenadePrefab, startPosition, Quaternion.identity).GetComponent<Rigidbody>();
-        grenadeRb.velocity = finalVelocity;
+    private void ThrowGrenade(float angleDeg) {
+        var grenadeSpawnPoint = GetGrenadeSpawnPoint();
+        var grenadeRb = Instantiate(GrenadePrefab, grenadeSpawnPoint, Quaternion.identity).GetComponent<Rigidbody>();
+        grenadeRb.AddForce(trajectoryPredictor.CalcGrenadeVelocity(grenadeSpawnPoint, angleDeg), ForceMode.Impulse);
 
         grenadeNumber--;
 

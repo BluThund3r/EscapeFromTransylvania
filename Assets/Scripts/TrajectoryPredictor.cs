@@ -52,6 +52,23 @@ public class TrajectoryPredictor : MonoBehaviour
         ShowTarget();
     }
 
+    public Vector3 CalcGrenadeVelocity(Vector3 source, float angle) {
+        var target = GetTargetPosition();
+        Vector3 direction = target - source;            				
+		float h = direction.y;                                        
+		direction.y = 0;                                               
+		float distance = direction.magnitude;                        
+		float a = angle * Mathf.Deg2Rad;                                
+		direction.y = distance * Mathf.Tan(a);                            
+		distance += h/Mathf.Tan(a);
+        distance = Mathf.Abs(distance);                                      
+
+		// calculate velocity
+		float velocity = Mathf.Sqrt(distance * Physics.gravity.magnitude / Mathf.Sin(2*a));
+        var finalVelocity = velocity * direction.normalized;
+		return finalVelocity;
+    }
+
     public bool IsTargetInRange(float minDistance, float maxDistance) {
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;

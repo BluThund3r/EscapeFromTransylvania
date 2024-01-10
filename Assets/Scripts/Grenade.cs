@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Grenade : GravityProjectile
 {
     public float ExplosionRadius = 5f;
@@ -9,6 +10,9 @@ public class Grenade : GravityProjectile
     public float ExplosionDelay = 3f;
     public GameObject ExplosionPrefab;
     public GameObject DamageSpherePrefab;
+    public Rigidbody grenadeRb;
+
+    public float collisionDrag = 5f;
 
     private void Awake() {
         StartCoroutine(Explode());
@@ -25,5 +29,10 @@ public class Grenade : GravityProjectile
         Destroy(explosion, 2f);
         Destroy(damageSphere.gameObject, 0.5f);
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        grenadeRb.drag = collisionDrag;
+        grenadeRb.angularDrag = collisionDrag;
     }
 }
