@@ -8,7 +8,9 @@ public class EnemyCursor : MonoBehaviour
     public Texture2D redCursor;
     public Texture2D whiteCursor;
     private CursorMode cursorMode = CursorMode.Auto;
-    private Vector2 hotSpot = new Vector2(100, 100);
+    private Vector2 hotSpot = new Vector2(25, 25);
+
+    public LayerMask layerMask;
 
     void ChangeCursor(Texture2D cursorTexture)
     {
@@ -21,26 +23,26 @@ public class EnemyCursor : MonoBehaviour
         string redCursorPath = "Assets\\Sprites\\Cursor\\red.png";
         string whiteCursorPath = "Assets\\Sprites\\Cursor\\white.png";
 
-        redCursor = Resources.Load<Texture2D>(redCursorPath);
-        whiteCursor = Resources.Load<Texture2D>(whiteCursorPath);
+        // redCursor = Resources.Load<Texture2D>(redCursorPath);
+        // whiteCursor = Resources.Load<Texture2D>(whiteCursorPath);
 
         ChangeCursor(whiteCursor);
     }
 
     void Update(){
         Console.WriteLine("change cursor");
-        ChangeCursor(whiteCursor);
 
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
-            if (hit.collider.gameObject == gameObject)
-            {
-                Debug.Log("hit");
-                ChangeCursor(redCursor);
-            }
+            ChangeCursor(redCursor);
         }
+        else
+        {
+            ChangeCursor(whiteCursor);
+        }
+        
     }
 }
