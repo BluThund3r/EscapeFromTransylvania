@@ -47,13 +47,11 @@ public class Player : MonoBehaviour
         _healthBar.SetMaxHealth(_maxHealth);
         _energyBar.SetMaxEnergy(_maxEnergy);
         _canSprint = true;
-        weaponObject = GetWeaponObject();
-        weapon = weaponObject.GetComponent<Weapon>();
-        DropWeapon(false);
+        // weaponObject = GetWeaponObject();
+        // weapon = weaponObject.GetComponent<Weapon>();
+        // DropWeapon(false);
         GrenadeCounter.SetActive(false);
         trajectoryPredictor = GetComponent<TrajectoryPredictor>();
-        Cursor.visible = false;
-        Cursor.visible = true;
     }
     void FixedUpdate() 
     {

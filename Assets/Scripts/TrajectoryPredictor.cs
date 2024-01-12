@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(Transform))]
 public class TrajectoryPredictor : MonoBehaviour
 {
-    private Camera camera;
+    private Camera mainCamera;
     private LineRenderer lineRenderer;
     private Transform player;
     public LayerMask layerMaskToHit;
@@ -22,7 +22,7 @@ public class TrajectoryPredictor : MonoBehaviour
     private void Awake() {
         lineRenderer = GetComponent<LineRenderer>();
         player = GetComponent<Transform>();
-        camera = Camera.main;
+        mainCamera = Camera.main;
     }
 
      private void UpdateLineRender(int count, (int point, Vector3 pos) pointPos)
@@ -108,7 +108,7 @@ public class TrajectoryPredictor : MonoBehaviour
     }
 
     public RaycastHit GetMouseHit() {
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         Physics.Raycast(ray, out hit, Mathf.Infinity, layerMaskToHit);

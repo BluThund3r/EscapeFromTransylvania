@@ -19,7 +19,7 @@ public class Grenade : GravityProjectile
         StartCoroutine(Explode());
     }
 
-    private new void Start() {}
+    private void Start() {}
 
     private IEnumerator Explode() {
         yield return new WaitForSeconds(ExplosionDelay);
@@ -33,7 +33,7 @@ public class Grenade : GravityProjectile
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter(Collision other) {
+    private new void OnCollisionEnter(Collision other) {
         grenadeRb.drag = collisionDrag;
         grenadeRb.angularDrag = collisionDrag;
     }
