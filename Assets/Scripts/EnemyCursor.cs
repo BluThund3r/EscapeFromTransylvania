@@ -18,20 +18,10 @@ public class EnemyCursor : MonoBehaviour
     }
 
     void Awake(){
-        Debug.Log("load cursor");
-
-        string redCursorPath = "Assets\\Sprites\\Cursor\\red.png";
-        string whiteCursorPath = "Assets\\Sprites\\Cursor\\white.png";
-
-        // redCursor = Resources.Load<Texture2D>(redCursorPath);
-        // whiteCursor = Resources.Load<Texture2D>(whiteCursorPath);
-
         ChangeCursor(whiteCursor);
     }
 
     void Update(){
-        Console.WriteLine("change cursor");
-
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

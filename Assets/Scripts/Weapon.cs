@@ -9,9 +9,8 @@ public class Weapon : MonoBehaviour
     public int _maxBulletsLoaded;
     public int _maxBulletsMagazine;
     public int _bulletsMagazine;
-    private static BulletCountController bulletCountController;
-    protected static GameObject bulletCountObject;
-    private static bool isBulletCountInitialized = false;
+    private BulletCountController bulletCountController;
+    protected GameObject bulletCountObject;
     public Vector3 realScale;
 
     private Vector3 bulletSpawnPoint() {
@@ -27,11 +26,9 @@ public class Weapon : MonoBehaviour
     }
 
     void Awake() {
-        if(!isBulletCountInitialized) {
-            bulletCountObject = GameObject.Find("BulletCount");
-            bulletCountController = bulletCountObject.GetComponent<BulletCountController>();
-            isBulletCountInitialized = true;
-        }
+        bulletCountObject = GameObject.Find("BulletCounterReference").GetComponent<BulletCounterReference>().BulletCounter;
+        bulletCountController = bulletCountObject.GetComponent<BulletCountController>();
+        
         this.MakeBulletCountEnable();
         bulletCountController.RefreshBulletCount(_bulletsLoaded, _bulletsMagazine);
     }

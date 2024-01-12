@@ -7,7 +7,7 @@ public class Capcaun : EnemyController
 {
     [SerializeField] private GameObject _bulletPrefab;
 
-    private void Start() {
+    private new void Start() {
         base.Start();
         _timeBetweenAttacks = 2f;
     }

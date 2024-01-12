@@ -19,7 +19,7 @@
     <RootNamespace></RootNamespace>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Unity.RenderPipelines.Universal.Shaders</AssemblyName>
     <TargetFramework>netstandard2.1</TargetFramework>
     <BaseDirectory>.</BaseDirectory>
   </PropertyGroup>
@@ -64,104 +64,142 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Explosion.cs" />
-    <Compile Include="Assets\Scripts\EnemyCursor.cs" />
-    <Compile Include="Assets\Scripts\TrajectoryPredictor.cs" />
-    <Compile Include="Assets\Structs\GrenadeProperties.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
-    <Compile Include="Assets\Scripts\Pricolici.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
-    <Compile Include="Assets\Scripts\GrenadeCounter.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
-    <Compile Include="Assets\Scripts\HP.cs" />
-    <Compile Include="Assets\Scripts\EnergyBar.cs" />
-    <Compile Include="Assets\Scripts\ToggleTimer.cs" />
-    <Compile Include="Assets\Scripts\EnergyPoint.cs" />
-    <Compile Include="Assets\Scripts\Projectile.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
-    <Compile Include="Assets\Scripts\EnemyController.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
-    <Compile Include="Assets\Scripts\Grenade.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
-    <Compile Include="Assets\Scripts\EnemySpawner.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
-    <Compile Include="Assets\Scripts\Bullet.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-    <Compile Include="Assets\Scripts\EnemyHealthBar.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
-    <Compile Include="Assets\Scripts\HealthBar.cs" />
-    <Compile Include="Assets\Scripts\CameraFollow.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
-    <Compile Include="Assets\Scripts\GrenadeSupplier.cs" />
-    <Compile Include="Assets\Scripts\PoisonousGas.cs" />
-    <Compile Include="Assets\Scripts\Witch.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
-    <Compile Include="Assets\Scripts\Vampire.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
-    <Compile Include="Assets\Scripts\Weapon.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
-    <Compile Include="Assets\Scripts\Harmful.cs" />
-    <Compile Include="Assets\Scripts\GravityProjectile.cs" />
-    <Compile Include="Assets\Scripts\Timer.cs" />
-    <Compile Include="Assets\Scripts\WeaponSupplier.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\DamageSphere.cs" />
-    <Compile Include="Assets\Scripts\Capcaun.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
-    <Compile Include="Assets\Scripts\BulletCountController.cs" />
-    <Compile Include="Assets\Scripts\PoisonArea.cs" />
-    <Compile Include="Assets\Scripts\FireBall.cs" />
-    <Compile Include="Assets\Scripts\Solomonar.cs" />
-    <Compile Include="Assets\Scripts\BulletCounterReference.cs" />
-    <Compile Include="Assets\Scripts\PredictTarget.cs" />
-    <Compile Include="Assets\Scripts\WitchPotion.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
+    <Compile Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Shaders.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
-    <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
-    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
-    <None Include="Assets\Sprites\colors.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
-    <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\SpatialMappingOcclusion.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\BakedLitForwardPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Particles\ParticlesSimpleLitForwardPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\TerrainLitMetaPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Particles\ParticlesSimpleLitInput.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\StopNaN.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\LitForwardPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\TerrainLitBase.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Nature\SpeedTree7Input.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\PaniniProjection.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Utils\Blit.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Utils\CoreBlitColorAndDepth.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\LitGBufferPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Nature\SpeedTreeUtility.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Sprite-Lit-Default.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Sprite-Unlit-Default.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\UnlitMetaPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\TemporalAA.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\SubpixelMorphologicalAntialiasing.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Particles\ParticlesDepthNormalsPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Utils\CoreBlit.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Lit.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Include\LightingUtility.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Particles\ParticlesUnlitForwardPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Particles\ParticlesLitInput.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Light2D-Point.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Sprite-Mask.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Nature\SpeedTree7Passes.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\BakedLitMetaPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Utils\Sampling.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Particles\ParticlesUnlit.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\XR\XROcclusionMesh.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Shadow2D-Shadow-Sprite.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\BRGPicking.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\TerrainDetailLitPasses.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Unity.RenderPipelines.Universal.Shaders.asmdef" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\WavingGrassPasses.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\FinalPost.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\LitInput.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Include\InputData2D.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Nature\SpeedTree7CommonInput.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Unlit.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\LutBuilderLdr.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Particles\ParticlesSimpleLit.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Nature\SpeedTree7CommonPasses.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\CameraMotionVectors.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\XR\XRMirrorView.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\WavingGrass.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Nature\SpeedTree8Passes.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\BakedLitInput.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\EdgeAdaptiveSpatialUpsampling.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\BakedLitDepthNormalsPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\SimpleLitDepthNormalsPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\LitDepthNormalsPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Utils\CopyDepth.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Utils\FallbackError.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\TerrainDetailLit.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\UnlitForwardPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Debug\HDRDebugView.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Utils\Universal2D.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Shadow2D-Unshadow-Geometry.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Include\ShadowProjectVertex.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Utils\CopyDepthPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\WavingGrassDepthNormalsPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Particles\ParticlesEditorPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Particles\ParticlesLit.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\DepthNormalsPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Light2D-Point-Volumetric.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Light2D-Shape.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\UberPost.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\UnlitInput.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Include\CombinedShapeLightShared.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Utils\ScreenSpaceAmbientOcclusion.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Include\SurfaceData2D.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\UnlitGBufferPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Particles\ParticlesLitForwardPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\TerrainLitInput.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Utils\BlitHDROverlay.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\SpatialMappingWireframe.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\ScalingSetup.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\WavingGrassBillboard.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\TerrainLit.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Nature\SpeedTree7BillboardInput.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Nature\SpeedTree8.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Include\NormalsRenderingShared.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Include\SpriteMaskShared.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Utils\StencilDeferred.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Particles\ParticlesDepthOnlyPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Nature\SpeedTree8Input.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\DepthOnlyPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\TerrainLitAdd.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Particles\ParticlesInput.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\BokehDepthOfField.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\TerrainDetailLitInput.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\ShadowCasterPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\WavingGrassInput.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Particles\ParticlesSimpleLitGBufferPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\Common.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\TerrainLitDepthNormalsPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\ObjectMotionVectors.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Nature\SpeedTree7BillboardPasses.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\BakedLit.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\SubpixelMorphologicalAntialiasingBridge.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\LensFlareDataDriven.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Particles\ParticlesLitGbufferPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\LitMetaPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\LutBuilderHdr.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Particles\ParticlesUnlitInput.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\TemporalAA.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\SimpleLit.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\TerrainLitPasses.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\SimpleLitInput.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\XR\XRMirrorView.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\CameraMotionBlur.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\GaussianDepthOfField.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Nature\SpeedTree7Billboard.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Light2D-Shape-Volumetric.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Shadow2D-Projected.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\UnlitDepthNormalsPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\2D\Shadow2D-Unshadow-Sprite.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\SimpleLitForwardPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\ComplexLit.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Nature\SpeedTree7.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Utils\ScreenSpaceShadows.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\SubpixelMorphologicalAntialiasing.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\PostProcessing\Bloom.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Utils\MaterialError.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\SimpleLitGBufferPass.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Utils\FallbackLoading.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Terrain\TerrainLitBasemapGen.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Utils\Deferred.hlsl" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\Debug\DebugReplacement.shader" />
+    <None Include="Library\PackageCache\com.unity.render-pipelines.universal@14.0.8\Shaders\SimpleLitMetaPass.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -496,12 +534,52 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\PlaybackEngines\WebGLSupport\UnityEditor.WebGL.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.YamlDotNet">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="ReportGeneratorMerged">
       <HintPath>Library\PackageCache\com.unity.testtools.codecoverage@1.2.4\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Plastic.Antlr3.Runtime">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.0.7\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Plastic.Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.0.7\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="log4netPlastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.0.7\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.IonicZip">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.TextureAssets">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@1.9.0\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@2.0.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
@@ -994,50 +1072,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj" />
-    <ProjectReference Include="Unity.EditorCoroutines.Editor.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj" />
-    <ProjectReference Include="Unity.TerrainTools.Editor.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Runtime.csproj" />
-    <ProjectReference Include="Unity.AI.Navigation.csproj" />
-    <ProjectReference Include="Unity.Burst.Editor.csproj" />
-    <ProjectReference Include="Unity.Burst.csproj" />
-    <ProjectReference Include="Unity.PlasticSCM.Editor.csproj" />
-    <ProjectReference Include="Unity.Timeline.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Shared.Editor.csproj" />
-    <ProjectReference Include="Unity.TerrainTools.csproj" />
-    <ProjectReference Include="Unity.ShaderGraph.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualStudio.Editor.csproj" />
     <ProjectReference Include="UnityEditor.UI.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Core.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Core.Editor.csproj" />
-    <ProjectReference Include="Unity.Rider.Editor.csproj" />
     <ProjectReference Include="UnityEngine.UI.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Core.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Flow.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.Flow.Editor.csproj" />
-    <ProjectReference Include="Unity.Mathematics.Editor.csproj" />
-    <ProjectReference Include="Unity.RenderPipeline.Universal.ShaderLibrary.csproj" />
-    <ProjectReference Include="Unity.Timeline.csproj" />
-    <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.SettingsProvider.Editor.csproj" />
-    <ProjectReference Include="Unity.Performance.Profile-Analyzer.Editor.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.csproj" />
-    <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.csproj" />
-    <ProjectReference Include="Unity.AI.Navigation.Updater.csproj" />
-    <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.State.Editor.csproj" />
-    <ProjectReference Include="PPv2URPConverters.csproj" />
-    <ProjectReference Include="Unity.Mathematics.csproj" />
-    <ProjectReference Include="Unity.TextMeshPro.csproj" />
-    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj" />
-    <ProjectReference Include="Unity.Searcher.Editor.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Shaders.csproj" />
-    <ProjectReference Include="Unity.AI.Navigation.Editor.csproj" />
-    <ProjectReference Include="Unity.VisualScripting.State.csproj" />
-    <ProjectReference Include="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
-    <ProjectReference Include="Unity.VSCode.Editor.csproj" />
-    <ProjectReference Include="Unity.RenderPipelines.Universal.Editor.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>
