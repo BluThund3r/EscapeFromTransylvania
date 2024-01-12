@@ -110,6 +110,7 @@
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\GrenadeSupplier.cs" />
+    <Compile Include="Assets\Scripts\MenuMouseScript.cs" />
     <Compile Include="Assets\Scripts\PoisonousGas.cs" />
     <Compile Include="Assets\Scripts\Witch.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
