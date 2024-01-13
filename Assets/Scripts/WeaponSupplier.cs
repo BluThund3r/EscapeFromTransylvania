@@ -9,7 +9,6 @@ public class WeaponSupplier : MonoBehaviour
     public int MaxBulletsLoaded;
     public int BulletsLoaded;
     public int BulletsMagazine;
-    public GameObject WeaponPrefab;
     public float RotationSpeed = 100f;
     public float BobbingSpeed = 1f;
     public float Amplitude = 0.25f;
@@ -23,7 +22,7 @@ public class WeaponSupplier : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Player") && other.GetComponent<Player>()
-            .PickUpWeapon(WeaponPrefab, MaxBulletsLoaded, MaxBulletsMagazine, BulletsLoaded, BulletsMagazine)) {
+            .PickUpWeapon(MaxBulletsLoaded, MaxBulletsMagazine, BulletsLoaded, BulletsMagazine)) {
             StopCoroutine(animationCoroutine);
             Destroy(gameObject);
         }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,8 +27,8 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame() {
         hideButtons();
-        // showLoading();
-        SceneManager.LoadScene("Game");
+        showLoading();
+        SceneManager.LoadSceneAsync("Game");
     }
     
     public void QuitGame() {

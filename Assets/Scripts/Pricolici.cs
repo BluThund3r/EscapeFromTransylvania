@@ -13,6 +13,7 @@ public class Pricolici : EnemyController
     private new void Start() {
         base.Start();
         _timeBetweenAttacks = 1f;
+        Type = EnemyType.Pricolici;
     }
 
     protected override void Attacking()

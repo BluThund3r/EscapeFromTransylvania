@@ -555,12 +555,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 726802616}
   _energyBar: {fileID: 602326170}
+  _maxHealth: 0
+  _maxEnergy: 0
+  _currentHealth: 0
+  _currentEnergy: 0
+  grenadeNumber: 0
   maxGrenadeNumber: 10
   minGrenadeRange: 2
   maxGrenadeRange: 15
   GrenadeCounter: {fileID: 1284106268}
   weapon: {fileID: 0}
   WeaponSupplierPrefab: {fileID: 8036274368327600038, guid: 1bfa3628f34d84148bef0086d44bcdb1, type: 3}
+  WeaponPrefab: {fileID: 1915890477713073144, guid: 9d09f5f62cf82c0438ef9a59501062ed, type: 3}
   GrenadePrefab: {fileID: 2804416469888662218, guid: 573d0e2badee53940b7a7137b1f46f67, type: 3}
   grenadeThrowAngle: 30
   timeOfGrenadeFlight: 2
@@ -1164,11 +1170,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -1642,6 +1648,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561403960}
   m_CullTransparentMesh: 1
+--- !u!1 &562884944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 562884946}
+  - component: {fileID: 562884945}
+  m_Layer: 2
+  m_Name: PauseMenuHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &562884945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562884944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12183d28fe74a9a41bebd64216426533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &562884946
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562884944}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 456.4617, y: 236.87402, z: -66.78912}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &602326168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,7 +1730,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -114.140015, y: 26.299988}
+  m_AnchoredPosition: {x: -114.14014, y: 26.300049}
   m_SizeDelta: {x: 200, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &602326170
@@ -1978,7 +2028,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -62.263977, y: -59.299988}
+  m_AnchoredPosition: {x: -62.263916, y: -59.30005}
   m_SizeDelta: {x: 96.2473, y: 96.2473}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &692352574
@@ -1996,9 +2046,11 @@ MonoBehaviour:
   _timerText: {fileID: 561403962}
   _timerFill: {fileID: 1035297572}
   GasState: {fileID: 823248911}
+  _remainingDuration: 0
   poisonGas: {fileID: 9003299441596643373}
   poisonGasTime: 30
   noGasTime: 60
+  isGasActive: 0
 --- !u!114 &692352575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2272,7 +2324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -114.140015, y: 77.70001}
+  m_AnchoredPosition: {x: -114.14014, y: 77.69995}
   m_SizeDelta: {x: 200, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &726802616
@@ -3508,7 +3560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 64, y: 76.899994}
+  m_AnchoredPosition: {x: 64, y: 76.8999}
   m_SizeDelta: {x: 106.22589, y: 35.778305}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1284106268
@@ -3807,7 +3859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 63.51953, y: 33.081665}
+  m_AnchoredPosition: {x: 63.51953, y: 33.081543}
   m_SizeDelta: {x: 106.22589, y: 35.778305}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1384529386
@@ -4811,3 +4863,4 @@ SceneRoots:
   - {fileID: 541341829}
   - {fileID: 318758125}
   - {fileID: 251222668}
+  - {fileID: 562884946}

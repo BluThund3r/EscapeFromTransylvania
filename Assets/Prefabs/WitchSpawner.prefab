@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9022403179600775734}
   - component: {fileID: 7682275706778485490}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: WitchSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,7 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c20fdebc55b8e49b5a7c7236fb27f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 6540328128396819478, guid: 31771daa9ae46364cbca9336c7188c17, type: 3}
+  _enemyPrefab: {fileID: 450751236749083138, guid: 7bba1e47fdeb15c489ad36223abbe108, type: 3}
   _spawnDelay: 0.5
   _spawnRadius: 10
   _spawnCount: 5
+  EnemyType: 4

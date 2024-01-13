@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,9 +18,26 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void LoadSceneWithPreviousAsync(string sceneName)
+    {
+        previousSceneNames.Push(SceneManager.GetActiveScene().name); // Store the current scene name
+        SceneManager.LoadSceneAsync(sceneName);
+    }
+
     public void LoadPreviousScene()
     {
         var previousScene = previousSceneNames.Pop(); // Get the previous scene name
         SceneManager.LoadScene(previousScene); // Load the previous scene
+    }
+
+    public void LoadPreviousSceneAsync()
+    {
+        var previousScene = previousSceneNames.Pop(); // Get the previous scene name
+        SceneManager.LoadSceneAsync(previousScene); // Load the previous scene
+    }
+
+    public void ClearPreviousScenes()
+    {
+        previousSceneNames.Clear(); // Clear the previous scene names
     }
 }

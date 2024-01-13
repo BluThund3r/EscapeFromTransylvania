@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _spawnRadius = 10f;  
     [SerializeField] private int _spawnCount = 5;
     private bool _alreadySpawned = false;
+    public EnemyType EnemyType;
 
     private IEnumerator SpawnEnemies() {
         _alreadySpawned = true;
