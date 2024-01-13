@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     public float timeOfGrenadeFlight = 2f;
     private bool grenadeThrown = false;
     public float GrenadeCooldown = 4f;
+    [SerializeField] AudioSource walkingSound;
     
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -269,16 +270,25 @@ public class Player : MonoBehaviour
             _currentEnergy = newEnergy < 0f ? 0f : newEnergy;
             if(_currentEnergy == 0f)
                 _canSprint = false;
+            walkingSound.enabled = true;
             rb.MovePosition(rb.position + GetInputForMovement() * _sprintSpeed * Time.fixedDeltaTime);
         }
-        
+        else if (isPlayerMoving())
+        {
+            rb.MovePosition(rb.position + GetInputForMovement() * _movementSpeed * Time.fixedDeltaTime);
+            var newEnergy = _currentEnergy + _sprintHeal / 5;
+            _currentEnergy = newEnergy > _maxEnergy ? _maxEnergy : newEnergy;
+            if(_currentEnergy >= _criticalEnergy)
+                _canSprint = true;
+            walkingSound.enabled = true;
+        }
         else
         {
             var newEnergy = _currentEnergy + _sprintHeal;
             _currentEnergy = newEnergy > _maxEnergy ? _maxEnergy : newEnergy;
             if(_currentEnergy >= _criticalEnergy)
                 _canSprint = true;
-            rb.MovePosition(rb.position + GetInputForMovement() * _movementSpeed * Time.fixedDeltaTime);
+            walkingSound.enabled = false;
         }
         
     }
