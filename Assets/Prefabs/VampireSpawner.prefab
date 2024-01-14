@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fda6727f6bd5dbc4eba67a4cdcf0ad0d, type: 2}
+  - {fileID: 2100000, guid: c9ba89af0fc2629418d75f549757a775, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,3 +122,4 @@ MonoBehaviour:
   _spawnDelay: 0.5
   _spawnRadius: 10
   _spawnCount: 5
+  EnemyType: 0

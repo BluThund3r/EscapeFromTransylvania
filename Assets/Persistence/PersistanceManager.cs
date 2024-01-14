@@ -1,6 +1,7 @@
 using System.IO;
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class PersistanceManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PersistanceManager : MonoBehaviour
     private GameData currentGameState;
     public List<GameObject> EnemyPrefabs;
     public List<GameObject> EnemySpawnerPrefab;
+    private string currentSaveLoaded;
 
     private void Awake() {
         DontDestroyOnLoad(this.gameObject);
@@ -50,23 +52,23 @@ public class PersistanceManager : MonoBehaviour
         currentGameState = new GameData(playerData, enemyDataList, timerData, enemySpawnerDataList);
     }
 
-    public void LoadCurrentGameState() {
-        // Loading player 
+    public void LoadCurrentGameStateIntoScene() {
+        // Loading player into scene
         var player = GameObject.Find("Player").GetComponent<Player>();
         player.LoadData(currentGameState.playerData);
 
-        // Loading enemies
+        // Loading enemies into scene
         foreach(var enemyData in currentGameState.enemyDataList) {
             var enemy = Instantiate(EnemyPrefabs[(int)enemyData.Type], enemyData.Position, Quaternion.identity)
                             .GetComponent<EnemyController>();
             enemy.SetHealth(enemyData.Health);
         }
 
-        // Loading timer
+        // Loading timer into scene
         var timer = GameObject.Find("Timer").GetComponent<Timer>();
         timer.LoadData(currentGameState.timerData);
 
-        // Loading enemy spawners
+        // Loading enemy spawners into scene
         foreach(var enemySpawnerData in currentGameState.enemySpawnerDataList) {
             Instantiate(
                 EnemySpawnerPrefab[(int)enemySpawnerData.EnemyType], 
@@ -79,13 +81,22 @@ public class PersistanceManager : MonoBehaviour
         return currentGameState;
     }
 
+    public bool IsAnySaveLoaded() {
+        return currentSaveLoaded != null;
+    }
+
     public void SaveCurrentStateToFile(string saveName) {
         var savePath = Path.Combine(savesDirectoryPath, saveName + ".json");
         var json = JsonUtility.ToJson(currentGameState);
         File.WriteAllText(savePath, json);
     }
 
+    public void SaveCurrentStateToExistentFile() {
+        SaveCurrentStateToFile(currentSaveLoaded);
+    }
+
     public void LoadStateFromFile(string saveName) {
+        currentSaveLoaded = saveName;
         var savePath = Path.Combine(savesDirectoryPath, saveName + ".json");
         var json = File.ReadAllText(savePath);
         currentGameState = JsonUtility.FromJson<GameData>(json);
@@ -96,7 +107,23 @@ public class PersistanceManager : MonoBehaviour
         File.Delete(savePath);
     }
 
-    public string[] GetSaveNames() {
-        return Directory.GetFiles(savesDirectoryPath, "*.json");
+    public List<string> GetSavesNames() {
+        var savesNames = new List<string>();
+        var savePaths = Directory.GetFiles(savesDirectoryPath, "*.json");
+        foreach(var savePath in savePaths) {
+            var saveName = Path.GetFileNameWithoutExtension(savePath);
+            savesNames.Add(saveName);
+        }
+        return savesNames;
+    }
+
+    public void ClearCurrentSave()
+    {
+        currentSaveLoaded = null;
+        currentGameState = null;
+    }
+
+    public bool IsGameState() {
+        return currentGameState != null;
     }
 }

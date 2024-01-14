@@ -327,8 +327,8 @@
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.7\Editor\PlasticSCM\UI\FindEditorWindow.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.7\Editor\PlasticSCM\UI\DrawUserIcon.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.7\Editor\PlasticSCM\Configuration\WriteLogConfiguration.cs" />
-    <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.7\Editor\PlasticSCM\UI\Tree\TreeViewItemIds.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.7\Editor\PlasticSCM\Developer\UpdateReport\UpdateReportListHeaderState.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.7\Editor\PlasticSCM\UI\Tree\TreeViewItemIds.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.7\Editor\PlasticSCM\Views\PendingChanges\ChangelistTreeViewItem.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.7\Editor\PlasticSCM\UI\UnityThreadWaiter.cs" />
     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.0.7\Editor\PlasticSCM\UI\PlasticSplitterGUILayout.cs" />

@@ -20,12 +20,13 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(_spawnDelay);
         }
         yield return null;
+
+        Destroy(gameObject); // uncomment this line to destroy the spawner after spawning enemies
     }
 
     private void OnTriggerEnter(Collider other) {
         if(!_alreadySpawned && other.CompareTag("Player")) {
             StartCoroutine(SpawnEnemies());
-            Debug.Log("Player entered trigger");
         }
     }
 }

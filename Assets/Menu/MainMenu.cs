@@ -8,9 +8,11 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject LoadingImage;
     private GameManager gameManager;
+    private PersistanceManager persistanceManager;
 
     private void Awake() {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        persistanceManager = GameObject.Find("PersistanceManager").GetComponent<PersistanceManager>();
     }
 
     private void Start() {
@@ -28,7 +30,12 @@ public class MainMenu : MonoBehaviour
     public void NewGame() {
         hideButtons();
         showLoading();
-        SceneManager.LoadSceneAsync("Game");
+        gameManager.LoadSceneAsync("Game");
+    }
+
+    public void LoadGame() {
+        Debug.Log("Load menu");
+        // gameManager.LoadSceneWithPrevious("LoadMenu");
     }
     
     public void QuitGame() {

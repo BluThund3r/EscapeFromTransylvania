@@ -121,5 +121,5 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 6540328128396819478, guid: 31771daa9ae46364cbca9336c7188c17, type: 3}
   _spawnDelay: 0.5
   _spawnRadius: 10
-  _spawnCount: 5
+  _spawnCount: 1
   EnemyType: 1

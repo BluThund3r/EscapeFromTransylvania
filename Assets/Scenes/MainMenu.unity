@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 495511460}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2067,8 +2067,8 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 616547467}
   - {fileID: 495511462}
+  - {fileID: 616547467}
   - {fileID: 1698399929}
   - {fileID: 504117368}
   - {fileID: 983556800}
