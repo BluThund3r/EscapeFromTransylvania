@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\TrajectoryPredictor.cs" />
     <Compile Include="Assets\Structs\GrenadeProperties.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
+    <Compile Include="Assets\Menu\SavedGames.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\Scripts\Pricolici.cs" />
     <Compile Include="Assets\Persistence\WeaponData.cs" />

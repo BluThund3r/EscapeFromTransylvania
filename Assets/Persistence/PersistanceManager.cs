@@ -49,7 +49,8 @@ public class PersistanceManager : MonoBehaviour
                 new EnemySpawnerData(enemySpawner.GetComponent<EnemySpawner>())
             );
         }
-        currentGameState = new GameData(playerData, enemyDataList, timerData, enemySpawnerDataList);
+        var currentDateTime = DateTime.Now;
+        currentGameState = new GameData(playerData, enemyDataList, timerData, enemySpawnerDataList, currentDateTime);
     }
 
     public void LoadCurrentGameStateIntoScene() {

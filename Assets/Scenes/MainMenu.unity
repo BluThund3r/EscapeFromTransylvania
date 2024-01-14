@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Load Game
+  m_text: Saved Games
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 50ad98ed4d22bcd4c84ffe83fff40fd7, type: 2}
   m_sharedMaterial: {fileID: -2803550715975699963, guid: 50ad98ed4d22bcd4c84ffe83fff40fd7, type: 2}
@@ -1296,7 +1296,7 @@ GameObject:
   - component: {fileID: 1659563413}
   - component: {fileID: 1659563412}
   m_Layer: 5
-  m_Name: LoadGameButton
+  m_Name: SavedGamesButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
