@@ -27,6 +27,9 @@ public class WinningListener : MonoBehaviour
                 gameManager.LoadScene("WinningScene");
             }
         }
+        else {
+            materialRender.material = lockedMaterial;
+        }
     }
 
     private bool AnyEnemiesLeft() {

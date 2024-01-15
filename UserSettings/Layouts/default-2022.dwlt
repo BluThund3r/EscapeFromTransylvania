@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 3553
+  controlID: 42
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 3554
+  controlID: 43
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 3555
+  controlID: 44
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -215,8 +215,8 @@ MonoBehaviour:
     y: 0
     width: 957.6
     height: 464.8
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -242,14 +242,14 @@ MonoBehaviour:
     y: 464.8
     width: 1188
     height: 258
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 16}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
   - {fileID: 16}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -269,8 +269,8 @@ MonoBehaviour:
     y: 0
     width: 348
     height: 722.8
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -411,9 +411,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: a6720000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 8225adfb722badfb7e2cadfb8c2dadfb0c2eadfb942eadfb9a2fadfbf22fadfb1e31adfb4634adfb1a35adfbe43fadfb2a41adfb7441adfb16776dfc7c7b6dfc02b96dfc94ba6dfcb4ba6dfc98bc6dfc18eb6dfca2f16dfce0f66dfcc065e6ff0477e6ff227ae6ff3c86e6ff8687e6ffa2ace6ffe8b5e6ff90bae6ffa6c3e6ffccc5e6ffbae6e6ffc0e7e6ff78e9e6ffbcede6ffd0f1e6ffe4ffe6ff822aedff902dedff423dedff7e53edffdc56edffe26fedff3474edff7275edffc675edff1676edff6476edffb876edffa278edffec78edff7294f3ff0895f3ff9695f3ff2496f3ff7096f3ff8297f3ff1098f3fffc99f3ff429af3ffa29af3ff4ea7f3ff6ed4f3fff8d5f3ff96d8f3ffd2d8f3ff18d9f3ff5ad9f3ff9ad9f3ffe0d9f3ffbcdbf3fff8dbf3ff68e1f3ff1aeef9ff1afbfffff4ffffff98880000b8880000c8880000dc880000f688000044910000589100007291000090da00000230010016300100303001003068010060680100c0680100ca680100d8680100306c0100806c0100346f0100926f0100aa6f010088740100e6740100fe740100fc7801001e7901006a790100a4810100c4810100ca8101001a82010036820100e0ae010034af01003eaf01006ebb0100ccbb0100d6bb0100e4bb0100144e0200644e0200
+      m_ExpandedIDs: 0efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -793,9 +793,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 559.0354, y: 267.9728, z: -2.4171634}
+    m_Target: {x: 489.63748, y: 263.6354, z: -2.737598}
     speed: 2
-    m_Value: {x: 559.0354, y: 267.9728, z: -2.4171634}
+    m_Value: {x: 19.63, y: 0.5, z: 5.37}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -847,7 +847,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 301.8811
     speed: 2
-    m_Value: 301.8811
+    m_Value: 3.5707142
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -865,7 +865,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: 0.024917746, y: 0.97076213, z: -0.11588183, w: 0.20873924}
+  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -917,7 +917,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Materials
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -925,16 +925,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Materials
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\George Radu\Desktop\Facultate\An_III\Sem_1\IJC\Proiect\EscapeFromTransylvania
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 60}
-    m_SelectedIDs: 54720000
-    m_LastClickedID: 29268
-    m_ExpandedIDs: 00000000b4700000b6700000b8700000ba70000000ca9a3b
+    m_SelectedIDs: 8a8c0000
+    m_LastClickedID: 35978
+    m_ExpandedIDs: 000000000271000004710000067100000871000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -962,7 +962,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b4700000b6700000b8700000ba70000000ca9a3b
+    m_ExpandedIDs: 0000000002710000047100000671000008710000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -987,8 +987,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: a6720000
-    m_LastClickedInstanceID: 29350
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000a6770000000000004c6d0000
     m_RenameOverlay:

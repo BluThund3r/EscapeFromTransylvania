@@ -132,6 +132,7 @@ public class PersistanceManager : MonoBehaviour
         var savePath = Path.Combine(savesDirectoryPath, saveName + ".json");
         var json = JsonUtility.ToJson(currentGameState);
         File.WriteAllText(savePath, json);
+        currentSaveLoaded = saveName;
     }
 
     public void SaveCurrentStateToExistentFile() {
