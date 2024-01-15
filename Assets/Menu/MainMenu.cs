@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour
     public void NewGame() {
         hideButtons();
         showLoading();
-        gameManager.LoadSceneAsync("Game");
+        gameManager.LoadGameScene();
     }
 
     public void LoadGame() {

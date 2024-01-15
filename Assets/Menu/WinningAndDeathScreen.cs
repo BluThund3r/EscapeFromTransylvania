@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WinningAndDeathScreen : MonoBehaviour
 {
@@ -14,12 +15,12 @@ public class WinningAndDeathScreen : MonoBehaviour
         if(persistanceManager.IsAnySaveLoaded()) 
             persistanceManager.DeleteLoadedSave();
         
-        gameManager.ClearPreviousScenes();
         gameManager.LoadScene("MainMenu");
+        gameManager.ClearAllLoadedScenesExceptFor(SceneManager.GetSceneByName("MainMenu"));
     }
 
     public void BackToMainMenuDeath() {
-        gameManager.ClearPreviousScenes();
         gameManager.LoadScene("MainMenu");
+        gameManager.ClearAllLoadedScenesExceptFor(SceneManager.GetSceneByName("MainMenu"));
     }
 }

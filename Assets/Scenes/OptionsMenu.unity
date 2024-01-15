@@ -721,6 +721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 617095399}
   - component: {fileID: 617095400}
+  - component: {fileID: 617095401}
   m_Layer: 5
   m_Name: VolumeSlider
   m_TagString: Untagged
@@ -797,10 +798,22 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.361
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &617095401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617095398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c35bdc94b9bde1499348552737bc9ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &620034935
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,6 +1010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 868414489}
   - component: {fileID: 868414490}
+  - component: {fileID: 868414491}
   m_Layer: 5
   m_Name: CameraZoomSlider
   m_TagString: Untagged
@@ -1073,10 +1087,22 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.361
+  m_Value: 0.328
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &868414491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868414488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04b5b0cc981e9b046afd4787305e4b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &897710403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,7 +1693,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Camera Zoom
+  m_text: Camera FOV
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 50ad98ed4d22bcd4c84ffe83fff40fd7, type: 2}
   m_sharedMaterial: {fileID: -2803550715975699963, guid: 50ad98ed4d22bcd4c84ffe83fff40fd7, type: 2}
@@ -1694,7 +1720,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63.85
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2346,5 +2372,5 @@ SceneRoots:
   - {fileID: 495511462}
   - {fileID: 616547467}
   - {fileID: 1698399929}
-  - {fileID: 504117368}
   - {fileID: 983556800}
+  - {fileID: 504117368}

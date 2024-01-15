@@ -8,6 +8,7 @@ public class OptionsMenu : MonoBehaviour
 
     private void Awake() {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager.PrintSceneStack();
     }
 
     public void Back() {

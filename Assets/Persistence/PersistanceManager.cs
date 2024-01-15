@@ -124,6 +124,7 @@ public class PersistanceManager : MonoBehaviour
         currentGameState = null;
     }
 
+    // Returns whether there is a game config loaded in the persistance manager
     public bool IsGameState() {
         return currentGameState != null;
     }
