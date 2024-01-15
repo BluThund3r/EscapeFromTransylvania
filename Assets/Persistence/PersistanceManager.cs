@@ -2,6 +2,7 @@ using System.IO;
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class PersistanceManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PersistanceManager : MonoBehaviour
     private GameData currentGameState;
     public List<GameObject> EnemyPrefabs;
     public List<GameObject> EnemySpawnerPrefab;
+    public GameObject grenadeSupplierPrefab;
+    public GameObject weaponSupplierPrefab;
     private string currentSaveLoaded;
 
     private void Awake() {
@@ -42,15 +45,32 @@ public class PersistanceManager : MonoBehaviour
             enemyDataList.Add(new EnemyData(enemy.GetComponent<EnemyController>()));
         }
         var timerData = new TimerData(GameObject.Find("Timer").GetComponent<Timer>());
-        var enemySpawners = GameObject.FindGameObjectsWithTag("EnemySpawner");
-        var enemySpawnerDataList = new List<EnemySpawnerData>();
-        foreach(var enemySpawner in enemySpawners) {
-            enemySpawnerDataList.Add(
-                new EnemySpawnerData(enemySpawner.GetComponent<EnemySpawner>())
-            );
-        }
         var currentDateTime = DateTime.Now;
-        currentGameState = new GameData(playerData, enemyDataList, timerData, enemySpawnerDataList, currentDateTime);
+        var enemySpawnersDataList = 
+            GameObject.FindGameObjectsWithTag("EnemySpawner")
+                .Where(obj => obj.activeSelf)
+                .Select(obj => new EnemySpawnerData(obj.GetComponent<EnemySpawner>()))
+                .ToList();
+        var grenadeSuppliersDataList = 
+            GameObject.FindGameObjectsWithTag("GrenadeSupplier")
+                .Where(obj => obj.activeSelf)
+                .Select(obj => new GrenadeSupplierData(obj.GetComponent<GrenadeSupplier>()))
+                .ToList();
+        var weaponSuppliersDataList = 
+            GameObject.FindGameObjectsWithTag("WeaponSupplier")
+                .Where(obj => obj.activeSelf)
+                .Select(obj => obj.GetComponent<WeaponSupplier>().GetData())
+                .ToList();
+
+        currentGameState = new GameData(
+            playerData, 
+            enemyDataList, 
+            timerData, 
+            enemySpawnersDataList, 
+            currentDateTime,
+            grenadeSuppliersDataList,
+            weaponSuppliersDataList
+        );
     }
 
     public void LoadCurrentGameStateIntoScene() {
@@ -70,11 +90,33 @@ public class PersistanceManager : MonoBehaviour
         timer.LoadData(currentGameState.timerData);
 
         // Loading enemy spawners into scene
-        foreach(var enemySpawnerData in currentGameState.enemySpawnerDataList) {
-            Instantiate(
+        foreach(var enemySpawnerData in currentGameState.enemySpawnersDataList) {
+            var enemySpawner = Instantiate(
                 EnemySpawnerPrefab[(int)enemySpawnerData.EnemyType], 
-                enemySpawnerData.Position, Quaternion.identity
-            );
+                enemySpawnerData.Position, 
+                Quaternion.identity
+            ).GetComponent<EnemySpawner>();
+            enemySpawner._spawnCount = enemySpawnerData.SpawnCount;
+        }
+
+        // Loading grenade suppliers into scene
+        foreach(var grenadeSupplierData in currentGameState.grenadeSuppliersDataList) {
+            var grenadeSupplier = Instantiate(
+                grenadeSupplierPrefab, 
+                new Vector3(grenadeSupplierData.position.x, grenadeSupplierData.initialY, grenadeSupplierData.position.z), 
+                Quaternion.identity
+            ).GetComponent<GrenadeSupplier>();
+            grenadeSupplier.LoadData(grenadeSupplierData);
+        }
+
+        // Loading weapon suppliers into scene
+        foreach(var weaponSupplierData in currentGameState.weaponSuppliersDataList) {
+            var weaponSupplier = Instantiate(
+                weaponSupplierPrefab, 
+                new Vector3(weaponSupplierData.position.x, weaponSupplierData.initialY, weaponSupplierData.position.z), 
+                Quaternion.identity
+            ).GetComponent<WeaponSupplier>();
+            weaponSupplier.LoadData(weaponSupplierData);
         }
     }
 

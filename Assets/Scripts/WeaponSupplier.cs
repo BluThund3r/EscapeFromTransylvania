@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,11 +14,19 @@ public class WeaponSupplier : MonoBehaviour
     public float BobbingSpeed = 1f;
     public float Amplitude = 0.25f;
     private Coroutine animationCoroutine;
-    private float initialY;
+    public float initialY;
 
     private void Start() {
         initialY = transform.localPosition.y;
         animationCoroutine = StartCoroutine(StartAnimation());
+    }
+
+    public void LoadData(WeaponSupplierData weaponSupplierData) {
+        MaxBulletsMagazine = weaponSupplierData.maxBulletsMagazine;
+        MaxBulletsLoaded = weaponSupplierData.maxBulletsLoaded;
+        BulletsLoaded = weaponSupplierData.bulletsLoaded;
+        BulletsMagazine = weaponSupplierData.bulletsMagazine;
+        initialY = weaponSupplierData.initialY;
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -35,5 +44,17 @@ public class WeaponSupplier : MonoBehaviour
             transform.localPosition = new Vector3(transform.localPosition.x, newY, transform.localPosition.z);
             yield return null;
         }
+    }
+
+    public WeaponSupplierData GetData()
+    {
+        return new WeaponSupplierData(
+            transform.position,
+            initialY,
+            MaxBulletsMagazine,
+            MaxBulletsLoaded,
+            BulletsLoaded,
+            BulletsMagazine
+        );
     }
 }

@@ -1,3 +1,4 @@
+[System.Serializable]
 public class TimerData {
     public int timeRemaining;
     public bool isGasActive;

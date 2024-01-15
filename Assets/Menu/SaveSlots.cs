@@ -7,14 +7,14 @@ using UnityEngine.Rendering;
 
 public class SaveSlots : MonoBehaviour
 {
-    private PersistanceManager persistanceManager;
+    protected PersistanceManager persistanceManager;
     List<TextMeshProUGUI> saveSlotsText = new List<TextMeshProUGUI>();
     List<Button> saveSlotsButtons = new List<Button>();
-    private string selectedSaveName;
-    private const string EMPTY_SLOT_TEXT = "*Empty Slot*";
-    private GameManager gameManager;
+    protected string selectedSaveName;
+    protected const string EMPTY_SLOT_TEXT = "*Empty Slot*";
+    protected GameManager gameManager;
 
-    private void Awake() {
+    protected void Awake() {
         persistanceManager = GameObject.Find("PersistanceManager").GetComponent<PersistanceManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         foreach(Transform child in transform) {
@@ -26,7 +26,7 @@ public class SaveSlots : MonoBehaviour
         UpdateSaveSlots();
     }
 
-    private void UpdateSaveSlots() {
+    protected void UpdateSaveSlots() {
         var savesNames = persistanceManager.GetSavesNames();
         savesNames.Sort();
         for(int i = 0; i < savesNames.Count; i++) {
@@ -43,14 +43,14 @@ public class SaveSlots : MonoBehaviour
     }
     
     public void PlaySelectedGame() {
-        if(selectedSaveName == EMPTY_SLOT_TEXT) {
+        if(selectedSaveName == EMPTY_SLOT_TEXT || selectedSaveName == null || selectedSaveName == "") {
             return;
         }
         gameManager.LoadSavedGameScene(selectedSaveName);
     }
 
     public void DeleteSelectedGame() {
-        if(selectedSaveName == EMPTY_SLOT_TEXT) {
+        if(selectedSaveName == EMPTY_SLOT_TEXT  || selectedSaveName == null || selectedSaveName == "") {
             return;
         }
         persistanceManager.DeleteSaveFile(selectedSaveName);

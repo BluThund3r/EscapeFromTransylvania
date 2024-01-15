@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform _enemyPrefab;
     [SerializeField] private float _spawnDelay = 0.5f;
     [SerializeField] private float _spawnRadius = 10f;  
-    [SerializeField] private int _spawnCount = 5;
+    [SerializeField] public int _spawnCount = 5;
     private bool _alreadySpawned = false;
     public EnemyType EnemyType;
 

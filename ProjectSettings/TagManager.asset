@@ -10,6 +10,8 @@ TagManager:
   - EnemySpawner
   - Camera
   - EscapingArea
+  - GrenadeSupplier
+  - WeaponSupplier
   layers:
   - Default
   - TransparentFX

@@ -36,7 +36,7 @@ public class PauseMenu : MonoBehaviour
         if(persistanceManager.IsAnySaveLoaded())
             persistanceManager.SaveCurrentStateToExistentFile();
         else
-            gameManager.LoadSceneWithPrevious("SaveMenu");
+            gameManager.LoadSceneWithPrevious("GameSavingMenu");
     }
 
     public void Options() {

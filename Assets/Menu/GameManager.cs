@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     {
         var currentScene = SceneManager.GetActiveScene();
         previousScenes.Push(currentScene); // Store the current scene name
-        UnfocusScene(currentScene);
         StartCoroutine(LoadSceneAdditive(sceneName));
     }
 
@@ -30,9 +29,11 @@ public class GameManager : MonoBehaviour
         var rootGameObjects = scene.GetRootGameObjects();
         if(rootGameObjects[0].TryGetComponent<AudioListener>(out AudioListener audioListener)) {
             audioListener.enabled = false;
+            Debug.Log("Disabled audio listener");
         }
         if(rootGameObjects[rootGameObjects.Length - 1].TryGetComponent<EventSystem>(out EventSystem eventSystem)) {
             eventSystem.enabled = false;
+            Debug.Log("Disabled event system");
         }
     }
 
@@ -40,9 +41,11 @@ public class GameManager : MonoBehaviour
         var rootGameObjects = scene.GetRootGameObjects();
         if(rootGameObjects[0].TryGetComponent<AudioListener>(out AudioListener audioListener)) {
             audioListener.enabled = true;
+            Debug.Log("Enabled audio listener");
         }
         if(rootGameObjects[rootGameObjects.Length - 1].TryGetComponent<EventSystem>(out EventSystem eventSystem)) {
             eventSystem.enabled = true;
+            Debug.Log("Enabled event system");
         }
         SceneManager.SetActiveScene(scene);
     }
@@ -50,10 +53,17 @@ public class GameManager : MonoBehaviour
     public void LoadPreviousScene()
     {
         var previousScene = previousScenes.Pop(); 
-        var currentScene = SceneManager.GetActiveScene();
+        var currentScene = SceneManager.GetActiveScene();   
         UnfocusScene(currentScene);
         FocusScene(previousScene);
         SceneManager.UnloadSceneAsync(currentScene);
+    }
+
+    private IEnumerator WaitForSceneToFullyLoad(Scene scene) {
+        while(!scene.isLoaded) {
+            yield return null;
+        }
+        yield break;
     }
 
     private IEnumerator LoadSceneAdditive(string sceneName)
@@ -63,9 +73,11 @@ public class GameManager : MonoBehaviour
         while(!asyncLoad.isDone) {
             yield return null;
         }
-
-        UnfocusScene(currentScene);
+        
         var newScene = SceneManager.GetSceneByName(sceneName);
+        yield return WaitForSceneToFullyLoad(newScene);
+        yield return WaitForSceneToFullyLoad(currentScene);
+        UnfocusScene(currentScene);
         FocusScene(newScene);
         if(newScene.name == "Game" || newScene.name == "MainMenu")
             ClearAllLoadedScenesExceptFor(newScene);
@@ -114,9 +126,13 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        persistanceManager.LoadCurrentGameStateIntoScene();
+        var currentScene = SceneManager.GetActiveScene();
         var newScene = SceneManager.GetSceneByName("Game");
+        yield return WaitForSceneToFullyLoad(newScene);
+        yield return WaitForSceneToFullyLoad(currentScene);
+        UnfocusScene(currentScene);
         FocusScene(newScene);
+        persistanceManager.LoadCurrentGameStateIntoScene();
         ClearAllLoadedScenesExceptFor(newScene);
 
         yield break;

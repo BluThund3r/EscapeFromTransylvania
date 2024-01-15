@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1b0b3183534244b9bac46a9f4c18b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 0
   _navMeshAgent: {fileID: 1797343415746219786}
   _player: {fileID: 0}
   _groundMask:

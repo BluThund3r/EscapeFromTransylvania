@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Explosion.cs" />
     <Compile Include="Assets\Scripts\EnemyCursor.cs" />
+    <Compile Include="Assets\Scripts\PersistenceGameHandler.cs" />
     <Compile Include="Assets\Scripts\TrajectoryPredictor.cs" />
     <Compile Include="Assets\Structs\GrenadeProperties.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\Scripts\GrenadeCounterReference.cs" />
     <Compile Include="Assets\Menu\WinningAndDeathScreen.cs" />
+    <Compile Include="Assets\Persistence\GrenadeSupplierData.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -141,6 +143,7 @@
     <Compile Include="Assets\Scripts\WeaponSupplier.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Menu\GameSavingMenu.cs" />
     <Compile Include="Assets\Scripts\DamageSphere.cs" />
     <Compile Include="Assets\Scripts\Capcaun.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
@@ -148,12 +151,14 @@
     <Compile Include="Assets\Scripts\PoisonArea.cs" />
     <Compile Include="Assets\Scripts\FireBall.cs" />
     <Compile Include="Assets\Scripts\WinningListener.cs" />
+    <Compile Include="Assets\Persistence\WeaponSupplierData.cs" />
     <Compile Include="Assets\Scripts\Solomonar.cs" />
     <Compile Include="Assets\Scripts\BulletCounterReference.cs" />
     <Compile Include="Assets\Persistence\PersistanceManager.cs" />
     <Compile Include="Assets\Menu\MainMenu.cs" />
     <Compile Include="Assets\Scripts\PredictTarget.cs" />
     <Compile Include="Assets\Scripts\WitchPotion.cs" />
+    <Compile Include="Assets\Scripts\SpawnPersistentPrefabs.cs" />
     <Compile Include="Assets\Menu\PauseMenuListener.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\Persistence\EnemyType.cs" />

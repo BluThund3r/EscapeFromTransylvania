@@ -1193,6 +1193,8 @@ MonoBehaviour:
   - {fileID: 7422997250181130375, guid: e671225ea5a2b1f4aa798244916c4247, type: 3}
   - {fileID: 7422997250181130375, guid: d46c321219af34a45a0f9e3038aeafd4, type: 3}
   - {fileID: 7422997250181130375, guid: 308aa0f493e43a9469e0a227a2660e24, type: 3}
+  grenadeSupplierPrefab: {fileID: 1946121483676794795, guid: 77ca9f1ee9c7cf44480f89dcfd5a0989, type: 3}
+  weaponSupplierPrefab: {fileID: 8036274368327600038, guid: 1bfa3628f34d84148bef0086d44bcdb1, type: 3}
 --- !u!4 &1527304398
 Transform:
   m_ObjectHideFlags: 0
