@@ -400,6 +400,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 345243442}
+  - component: {fileID: 345243443}
   m_Layer: 5
   m_Name: SlotsWrapper
   m_TagString: Untagged
@@ -429,6 +430,18 @@ RectTransform:
   m_AnchoredPosition: {x: -259, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &345243443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345243441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f3a5267fadbc14e9d7ff39e68c4655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &384175514
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,7 +988,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 558897082}
-  - component: {fileID: 558897084}
   m_Layer: 5
   m_Name: SavedGamesElements
   m_TagString: Untagged
@@ -1004,18 +1016,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -188}
   m_SizeDelta: {x: -1820, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &558897084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558897081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 379f06ae68703484683a0aa0726c8f82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &616547465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1327,9 +1327,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 558897084}
-        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
-        m_MethodName: Back
+      - m_Target: {fileID: 345243443}
+        m_TargetAssemblyTypeName: SaveSlots, Assembly-CSharp
+        m_MethodName: DeleteSelectedGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1893,9 +1893,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 558897084}
-        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
-        m_MethodName: Back
+      - m_Target: {fileID: 345243443}
+        m_TargetAssemblyTypeName: SaveSlots, Assembly-CSharp
+        m_MethodName: PlaySelectedGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2510,8 +2510,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 558897084}
-        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
+      - m_Target: {fileID: 345243443}
+        m_TargetAssemblyTypeName: SaveSlots, Assembly-CSharp
         m_MethodName: Back
         m_Mode: 1
         m_Arguments:
