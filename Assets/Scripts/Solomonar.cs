@@ -6,12 +6,9 @@ public class Solomonar : EnemyController
 {
     [SerializeField] private GameObject fireballPrefab;
 
-    [SerializeField] AudioSource attackSound;
-
     private new void Start() {
         base.Start();
         _timeBetweenAttacks = 7f;
-        Type = EnemyType.Solomonar;
     }
 
     protected override void Attacking()
@@ -21,7 +18,6 @@ public class Solomonar : EnemyController
 
         if(!_alreadyAttacked) {
             var fireball = Instantiate(fireballPrefab, _player.position + Vector3.up * 40, Quaternion.identity);
-            attackSound.Play();
 
             _alreadyAttacked = true;
             Invoke(nameof(ResetAttack), _timeBetweenAttacks);

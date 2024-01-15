@@ -7,8 +7,6 @@ public class WitchPotion : GravityProjectile
 {  
     public GameObject poisonAreaPrefab;
     public float potionThrowAngle = 30f;
-    [SerializeField] AudioSource breakingSound;
-
 
     private void Start() {
         projectileSpeed = 8f;
@@ -27,7 +25,6 @@ public class WitchPotion : GravityProjectile
     }
 
     private void SummonPoisonArea() {
-        breakingSound.Play();
         GameObject poisonArea = Instantiate(poisonAreaPrefab, transform.position, Quaternion.identity);
         poisonArea.GetComponent<PoisonArea>().SetDamage(GetDamage());
     }

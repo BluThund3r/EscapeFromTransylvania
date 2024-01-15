@@ -6,11 +6,10 @@ using Random = UnityEngine.Random;
 
 public abstract class EnemyController : MonoBehaviour
 {
-    public EnemyType Type;
     [SerializeField] protected NavMeshAgent _navMeshAgent;
     [SerializeField] protected Transform _player;
     [SerializeField] private LayerMask _groundMask, _playerMask;
-    [SerializeField] public float _health;
+    [SerializeField] protected float _health;
     protected float _maxHealth = 100f;
     private Vector3 _walkPoint;
     private bool _isWalkPointSet = false;
@@ -93,11 +92,6 @@ public abstract class EnemyController : MonoBehaviour
 
         if(_health <= 0) 
             Die();
-    }
-
-    public void SetHealth(float health) {
-        _health = health;
-        _healthBar.UpdateHealthBar(_health, _maxHealth);
     }
 
     protected void Die() {

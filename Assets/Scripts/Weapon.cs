@@ -13,9 +13,6 @@ public class Weapon : MonoBehaviour
     protected GameObject bulletCountObject;
     public Vector3 realScale;
 
-    [SerializeField] AudioSource fireSound;
-
-
     private Vector3 bulletSpawnPoint() {
         return transform.position + transform.forward;
     }
@@ -51,7 +48,6 @@ public class Weapon : MonoBehaviour
             _bulletsLoaded --;
             Bullet bullet = Instantiate(bulletPrefab, bulletSpawnPoint(), transform.rotation).GetComponent<Bullet>();
             bullet.SetDirection(transform.parent.forward);
-            fireSound.Play();
         }
         bulletCountController.RefreshBulletCount(_bulletsLoaded, _bulletsMagazine);
     }

@@ -11,7 +11,7 @@ public class EnemyHealthBar : MonoBehaviour
     [SerializeField] private Vector3 offset;
 
     public void Awake() {
-        _camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        _camera = Camera.main;
     }
 
     public void UpdateHealthBar(float currentHealth, float maxHealth) {

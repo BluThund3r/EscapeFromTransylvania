@@ -20,7 +20,7 @@ public class PoisonousGas : Harmful
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player") 
+        if (other.gameObject.CompareTag("Player")) 
             other.gameObject.GetComponent<Player>().TakeDamage(GetDamage());
     }
 }

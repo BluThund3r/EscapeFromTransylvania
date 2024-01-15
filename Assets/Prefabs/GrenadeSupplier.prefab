@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6810939698066063933}
   m_Layer: 14
   m_Name: GrenadeSupplier
-  m_TagString: GrenadeSupplier
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,4 +121,3 @@ MonoBehaviour:
   RotationSpeed: 100
   BobbingSpeed: 1
   Amplitude: 0.25
-  initialY: 0
