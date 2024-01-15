@@ -11,6 +11,8 @@ public class Vampire : EnemyController
     private Vector3 originalPosition;
     private float dashTime = 0.25f;
     [SerializeField] private GameObject damageSpherePrefab;
+    [SerializeField] AudioSource attackSound;
+
 
     private DamageSphere damageSphere;
 
@@ -25,8 +27,9 @@ public class Vampire : EnemyController
         _navMeshAgent.SetDestination(transform.position);
         transform.LookAt(_player);
 
-        if(!_alreadyAttacked)
+        if(!_alreadyAttacked) {
             StartDashing();
+        }
     }
 
     private void StartDashing() {
@@ -63,6 +66,7 @@ public class Vampire : EnemyController
     }
 
     private IEnumerator Dash() {
+        attackSound.Play();
         transform.localPosition = originalPosition;
         transform.LookAt(_player);
         float currentTime = 0f;
