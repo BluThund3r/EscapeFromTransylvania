@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 637749710}
   - component: {fileID: 637749709}
   m_Layer: 5
-  m_Name: WinningSubtitle
+  m_Name: DeathSubtitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,7 +411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -90}
+  m_AnchoredPosition: {x: 0, y: -59.837948}
   m_SizeDelta: {x: 907.4521, y: 242.4069}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &637749709
@@ -434,7 +434,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You escaped from the horrors of Transylvania
+  m_text: Better luck next time
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a9e43463d111194995232f5a0d3b648, type: 2}
   m_sharedMaterial: {fileID: -3112576505037949617, guid: 9a9e43463d111194995232f5a0d3b648, type: 2}
@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 1566055064}
   - component: {fileID: 1566055063}
   m_Layer: 5
-  m_Name: WinningTitle
+  m_Name: DeathTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -802,7 +802,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Congratulations
+  m_text: You DIED
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a9e43463d111194995232f5a0d3b648, type: 2}
   m_sharedMaterial: {fileID: -3112576505037949617, guid: 9a9e43463d111194995232f5a0d3b648, type: 2}
@@ -811,8 +811,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278214160
-  m_fontColor: {r: 0.061899647, g: 0.3679245, b: 0, a: 1}
+    rgba: 4278190272
+  m_fontColor: {r: 0.754717, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1114,6 +1114,7 @@ GameObject:
   - component: {fileID: 1950179061}
   - component: {fileID: 1950179060}
   - component: {fileID: 1950179059}
+  - component: {fileID: 1950179062}
   m_Layer: 5
   m_Name: BackToMainMenu
   m_TagString: Untagged
@@ -1184,7 +1185,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1950179060}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1950179062}
+        m_TargetAssemblyTypeName: WinningAndDeathScreen, Assembly-CSharp
+        m_MethodName: BackToMainMenuDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1950179060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1223,6 +1236,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950179057}
   m_CullTransparentMesh: 1
+--- !u!114 &1950179062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950179057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b27d82b390fd643b96ee4950ec83e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1989948596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,7 +1258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1989948597}
   m_Layer: 5
-  m_Name: WinningText
+  m_Name: DeathText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

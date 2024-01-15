@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - EnemySpawner
   - Camera
+  - EscapingArea
   layers:
   - Default
   - TransparentFX

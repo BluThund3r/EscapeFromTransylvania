@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 565526641292385367}
   - component: {fileID: 8845522521783146516}
   - component: {fileID: 9022403179600775734}
-  - component: {fileID: 7682275706778485490}
+  - component: {fileID: 555192058401115967}
   m_Layer: 0
-  m_Name: WitchSpawner
-  m_TagString: EnemySpawner
+  m_Name: EscapingArea
+  m_TagString: EscapingArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0134d92c010ef07499add5e5cce3e34f, type: 2}
+  - {fileID: 2100000, guid: e896afa3888f04d458c953f919541e41, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +106,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7682275706778485490
+--- !u!114 &555192058401115967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,11 +115,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7422997250181130375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6c20fdebc55b8e49b5a7c7236fb27f6, type: 3}
+  m_Script: {fileID: 11500000, guid: ac980aa6fa0d8344a9d9100b0f7329d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 450751236749083138, guid: 7bba1e47fdeb15c489ad36223abbe108, type: 3}
-  _spawnDelay: 0.5
-  _spawnRadius: 10
-  _spawnCount: 5
-  EnemyType: 4
+  isInEscapeArea: 0
+  lockedMaterial: {fileID: 2100000, guid: 2f5930177f9443a4dbfa38f27d0b6b45, type: 2}
+  unlockedMaterial: {fileID: 2100000, guid: 75a01922ff99efa45a2ce57092600929, type: 2}

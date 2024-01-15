@@ -100,6 +100,8 @@
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Persistence\TimerData.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
+    <Compile Include="Assets\Menu\WinningAndDeathScreen.cs" />
+    <Compile Include="Assets\Scripts\GrenadeCounterReference.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -142,6 +144,7 @@
     <Compile Include="Assets\Scripts\BulletCountController.cs" />
     <Compile Include="Assets\Scripts\PoisonArea.cs" />
     <Compile Include="Assets\Scripts\FireBall.cs" />
+    <Compile Include="Assets\Scripts\WinningListener.cs" />
     <Compile Include="Assets\Scripts\Solomonar.cs" />
     <Compile Include="Assets\Scripts\BulletCounterReference.cs" />
     <Compile Include="Assets\Persistence\PersistanceManager.cs" />

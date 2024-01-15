@@ -5,14 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuListener : MonoBehaviour
 {
-    private GameManager gameManager;
-
     private PersistanceManager persistanceManager;
-
     public bool IsPaused = false;
 
     private void Awake() {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         persistanceManager = GameObject.Find("PersistanceManager").GetComponent<PersistanceManager>();
     }
 

@@ -127,4 +127,10 @@ public class PersistanceManager : MonoBehaviour
     public bool IsGameState() {
         return currentGameState != null;
     }
+
+    public void DeleteLoadedSave()
+    {
+        DeleteSaveFile(currentSaveLoaded);
+        ClearCurrentSave();
+    }
 }

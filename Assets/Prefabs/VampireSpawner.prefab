@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7682275706778485490}
   m_Layer: 0
   m_Name: VampireSpawner
-  m_TagString: Untagged
+  m_TagString: EnemySpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     public float timeOfGrenadeFlight = 2f;
     private bool grenadeThrown = false;
     public float GrenadeCooldown = 4f;
+    private GameManager gameManager;
     
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -48,9 +49,9 @@ public class Player : MonoBehaviour
         _healthBar.SetMaxHealth(_maxHealth);
         _energyBar.SetMaxEnergy(_maxEnergy);
         _canSprint = true;
-        GrenadeCounter.SetActive(false);
         trajectoryPredictor = GetComponent<TrajectoryPredictor>();
         attackSelection = 0;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public void LoadData(PlayerData playerData) {
@@ -187,7 +188,6 @@ public class Player : MonoBehaviour
             GrenadeCounter.SetActive(true);
             GrenadeCounter.Unfocus();
         }
-            
         
         return true;
     }
@@ -260,12 +260,16 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damage)
     {
         if(_currentHealth <= 0f) {
-            //Die();
+            Die();
             return;
         }
         
         _currentHealth -= damage;
         _healthBar.SetHealth(_currentHealth);
+    }
+
+    private void Die() {
+        gameManager.LoadScene("DeathScene");
     }
 
     private void LookAtMouse()
