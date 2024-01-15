@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         yield return WaitForSceneToFullyLoad(currentScene);
         UnfocusScene(currentScene);
         FocusScene(newScene);
-        if(newScene.name == "Game" || newScene.name == "MainMenu")
+        if(newScene.name == "Game" || newScene.name == "MainMenu" || newScene.name =="WinningScene" || newScene.name == "DeathScene")
             ClearAllLoadedScenesExceptFor(newScene);
         yield break;
     }

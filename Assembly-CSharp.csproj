@@ -148,6 +148,7 @@
     <Compile Include="Assets\Scripts\Capcaun.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\BulletCountController.cs" />
+    <Compile Include="Assets\Scripts\AudioVolume.cs" />
     <Compile Include="Assets\Scripts\PoisonArea.cs" />
     <Compile Include="Assets\Scripts\FireBall.cs" />
     <Compile Include="Assets\Scripts\WinningListener.cs" />

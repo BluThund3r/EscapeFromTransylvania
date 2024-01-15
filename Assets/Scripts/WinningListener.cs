@@ -10,6 +10,8 @@ public class WinningListener : MonoBehaviour
     public Material unlockedMaterial;
     private MeshRenderer materialRender;
 
+    private bool hasEscaped = false;
+
     private void Awake() {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         materialRender = GetComponent<MeshRenderer>();
@@ -20,7 +22,8 @@ public class WinningListener : MonoBehaviour
         if(!AnyEnemiesLeft() && !AnyEnemieSpawnersLeft()) {
                 materialRender.material = unlockedMaterial;
 
-            if(isInEscapeArea) {
+            if(isInEscapeArea && !hasEscaped) {
+                hasEscaped = true;
                 gameManager.LoadScene("WinningScene");
             }
         }

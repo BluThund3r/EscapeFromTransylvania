@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     private bool grenadeThrown = false;
     public float GrenadeCooldown = 4f;
     private GameManager gameManager;
+    private bool isDead = false;
     
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -98,6 +99,9 @@ public class Player : MonoBehaviour
     }
 
     void Update() {
+        if(isDead)
+            return;
+
         LookAtMouse();
         _energyBar.SetEnergy(_currentEnergy);
         
@@ -269,6 +273,7 @@ public class Player : MonoBehaviour
     }
 
     private void Die() {
+        isDead = true;
         gameManager.LoadScene("DeathScene");
     }
 

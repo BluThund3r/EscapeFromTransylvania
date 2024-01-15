@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(Slider))]
 public class VolumeSlider : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private Slider volumeSlider;
+
+    private void Awake() {
+        volumeSlider = GetComponent<Slider>();
+        volumeSlider.value = PlayerPrefs.GetFloat("AudioVolume", 0.5f);
+        volumeSlider.onValueChanged.AddListener(OnSliderChange);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnSliderChange(float value) {
+        PlayerPrefs.SetFloat("AudioVolume", value);
+        AudioListener.volume = value;
     }
 }
