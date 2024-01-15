@@ -14,9 +14,15 @@ public class Timer : MonoBehaviour
     public int noGasTime = 10; // the full duration of the timer until the poison gas starts (in seconds)
     public bool isGasActive = false;
     private bool isDataLoaded = false;
+    private PersistanceManager persistanceManager;
+
+    private void Awake() {
+        persistanceManager = GameObject.Find("PersistanceManager").GetComponent<PersistanceManager>();
+    }
 
     private void Start() {
-        Begin(noGasTime);
+        if(!persistanceManager.IsGameState())
+            Begin(noGasTime);
     }
 
     public void LoadData(TimerData timerData) {
