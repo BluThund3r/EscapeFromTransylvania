@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,12 +11,15 @@ public class Vampire : EnemyController
     private Vector3 originalPosition;
     private float dashTime = 0.25f;
     [SerializeField] private GameObject damageSpherePrefab;
+    [SerializeField] AudioSource attackSound;
+
 
     private DamageSphere damageSphere;
 
     private new void Start() {
         base.Start();
         _timeBetweenAttacks = 3f;
+        Type = EnemyType.Vampire;
     }
 
     protected override void Attacking()
@@ -23,8 +27,9 @@ public class Vampire : EnemyController
         _navMeshAgent.SetDestination(transform.position);
         transform.LookAt(_player);
 
-        if(!_alreadyAttacked)
+        if(!_alreadyAttacked) {
             StartDashing();
+        }
     }
 
     private void StartDashing() {
@@ -61,6 +66,7 @@ public class Vampire : EnemyController
     }
 
     private IEnumerator Dash() {
+        attackSound.Play();
         transform.localPosition = originalPosition;
         transform.LookAt(_player);
         float currentTime = 0f;

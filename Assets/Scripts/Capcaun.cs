@@ -6,10 +6,13 @@ using UnityEngine;
 public class Capcaun : EnemyController
 {
     [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] AudioSource attackSound;
+
 
     private new void Start() {
         base.Start();
         _timeBetweenAttacks = 2f;
+        Type = EnemyType.Capcaun;
     }
 
     protected override void Attacking()
@@ -18,6 +21,7 @@ public class Capcaun : EnemyController
         transform.LookAt(_player);
 
         if(!_alreadyAttacked) {
+            attackSound.Play();
             var projectile = Instantiate(_bulletPrefab, transform.position + transform.forward.normalized, Quaternion.identity).GetComponent<Projectile>();
             projectile.SetDirection(transform.forward);
 

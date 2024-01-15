@@ -22,7 +22,7 @@ public class TrajectoryPredictor : MonoBehaviour
     private void Awake() {
         lineRenderer = GetComponent<LineRenderer>();
         player = GetComponent<Transform>();
-        mainCamera = Camera.main;
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
      private void UpdateLineRender(int count, (int point, Vector3 pos) pointPos)

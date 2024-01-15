@@ -12,15 +12,15 @@ public class Player : MonoBehaviour
     private float _sprintSpeed;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private EnergyBar _energyBar;
-    private float _maxHealth;
-    private float _maxEnergy;
-    private float _currentHealth;
-    private float _currentEnergy;
+    public float _maxHealth;
+    public float _maxEnergy;
+    public float _currentHealth;
+    public float _currentEnergy;
     private bool _canSprint;
     private float _sprintCost = 0.3f; // The amount that is subtracted from the energy bar when sprinting
     private float _sprintHeal = 0.15f; // The amount that is added to the energy bar when not sprinting
     private float _criticalEnergy = 50f; // If you modify this, make sure to modify the gradient for the EnergyBar too (in Unity Editor)
-    private int grenadeNumber = 0;
+    public int grenadeNumber = 0;
     public int maxGrenadeNumber = 10;
     private int attackSelection = 0;
     public float minGrenadeRange = 2f;
@@ -30,11 +30,15 @@ public class Player : MonoBehaviour
     public Weapon weapon;
     private GameObject weaponObject;
     public GameObject WeaponSupplierPrefab;
+    public GameObject WeaponPrefab;
     public GameObject GrenadePrefab;
     public float grenadeThrowAngle = 30f;
     public float timeOfGrenadeFlight = 2f;
     private bool grenadeThrown = false;
     public float GrenadeCooldown = 4f;
+    private GameManager gameManager;
+    private bool isDead = false;
+    [SerializeField] AudioSource walkingSound;
     
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -47,14 +51,36 @@ public class Player : MonoBehaviour
         _healthBar.SetMaxHealth(_maxHealth);
         _energyBar.SetMaxEnergy(_maxEnergy);
         _canSprint = true;
-        // weaponObject = GetWeaponObject();
-        // weapon = weaponObject.GetComponent<Weapon>();
-        // DropWeapon(false);
-        GrenadeCounter.SetActive(false);
         trajectoryPredictor = GetComponent<TrajectoryPredictor>();
-        Cursor.visible = false;
-        Cursor.visible = true;
+        attackSelection = 0;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
+
+    public void LoadData(PlayerData playerData) {
+        _currentHealth = playerData.Hp;
+        _currentEnergy = playerData.Ep;
+        _healthBar.SetHealth(_currentHealth);
+        _energyBar.SetEnergy(_currentEnergy);
+        grenadeNumber = playerData.Grenades;
+        GrenadeCounter.RefreshGrenadeCounter(grenadeNumber, maxGrenadeNumber);
+        if(grenadeNumber > 0) {
+            GrenadeCounter.SetActive(true);
+            GrenadeCounter.Unfocus();
+        }
+        if(playerData.Weapon == null) {
+            weapon = null;
+            weaponObject = null;
+        } else {
+            PickUpWeapon(
+                playerData.Weapon.MaxBulletsLoaded, 
+                playerData.Weapon.MaxBulletsMagazine, 
+                playerData.Weapon.BulletsLoaded, 
+                playerData.Weapon.BulletsMagazine);
+        }
+        attackSelection = 0;
+        transform.position = playerData.Position;
+    }
+
     void FixedUpdate() 
     {
         MovePlayer();
@@ -74,6 +100,9 @@ public class Player : MonoBehaviour
     }
 
     void Update() {
+        if(isDead)
+            return;
+
         LookAtMouse();
         _energyBar.SetEnergy(_currentEnergy);
         
@@ -164,7 +193,6 @@ public class Player : MonoBehaviour
             GrenadeCounter.SetActive(true);
             GrenadeCounter.Unfocus();
         }
-            
         
         return true;
     }
@@ -207,7 +235,6 @@ public class Player : MonoBehaviour
     }
 
     public bool PickUpWeapon(
-        GameObject weaponPrefab, 
         int maxBulletsLoaded, 
         int maxBulletsMagazine, 
         int bulletsLoaded, 
@@ -222,7 +249,7 @@ public class Player : MonoBehaviour
         transform.forward * transform.localScale.z / 2 + 
         transform.right * transform.localScale.x / 2;
 
-        weaponObject = Instantiate(weaponPrefab, weaponSpawnPoint, transform.rotation, transform);
+        weaponObject = Instantiate(WeaponPrefab, weaponSpawnPoint, transform.rotation, transform);
         weapon = weaponObject.GetComponent<Weapon>();
         weapon.SetState(maxBulletsLoaded, maxBulletsMagazine, bulletsLoaded, bulletsMagazine);
         weapon.MakeBulletCountEnable();
@@ -238,12 +265,17 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damage)
     {
         if(_currentHealth <= 0f) {
-            //Die();
+            Die();
             return;
         }
         
         _currentHealth -= damage;
         _healthBar.SetHealth(_currentHealth);
+    }
+
+    private void Die() {
+        isDead = true;
+        gameManager.LoadScene("DeathScene");
     }
 
     private void LookAtMouse()
@@ -269,16 +301,25 @@ public class Player : MonoBehaviour
             _currentEnergy = newEnergy < 0f ? 0f : newEnergy;
             if(_currentEnergy == 0f)
                 _canSprint = false;
+            walkingSound.enabled = true;
             rb.MovePosition(rb.position + GetInputForMovement() * _sprintSpeed * Time.fixedDeltaTime);
         }
-        
+        else if (isPlayerMoving())
+        {
+            rb.MovePosition(rb.position + GetInputForMovement() * _movementSpeed * Time.fixedDeltaTime);
+            var newEnergy = _currentEnergy + _sprintHeal / 5;
+            _currentEnergy = newEnergy > _maxEnergy ? _maxEnergy : newEnergy;
+            if(_currentEnergy >= _criticalEnergy)
+                _canSprint = true;
+            walkingSound.enabled = true;
+        }
         else
         {
             var newEnergy = _currentEnergy + _sprintHeal;
             _currentEnergy = newEnergy > _maxEnergy ? _maxEnergy : newEnergy;
             if(_currentEnergy >= _criticalEnergy)
                 _canSprint = true;
-            rb.MovePosition(rb.position + GetInputForMovement() * _movementSpeed * Time.fixedDeltaTime);
+            walkingSound.enabled = false;
         }
         
     }
