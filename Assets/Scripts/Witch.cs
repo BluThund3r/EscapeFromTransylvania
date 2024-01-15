@@ -10,6 +10,7 @@ public class Witch : EnemyController
     private new void Start() {
         base.Start();
         _timeBetweenAttacks = 5f;
+        Type = EnemyType.Witch;
     }
 
     private Vector3 GetPotionSpawnPoint() {

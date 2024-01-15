@@ -12,6 +12,7 @@ public class Capcaun : EnemyController
     private new void Start() {
         base.Start();
         _timeBetweenAttacks = 2f;
+        Type = EnemyType.Capcaun;
     }
 
     protected override void Attacking()

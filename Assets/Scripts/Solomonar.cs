@@ -11,6 +11,7 @@ public class Solomonar : EnemyController
     private new void Start() {
         base.Start();
         _timeBetweenAttacks = 7f;
+        Type = EnemyType.Solomonar;
     }
 
     protected override void Attacking()

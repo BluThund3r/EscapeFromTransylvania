@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class Vampire : EnemyController
     private new void Start() {
         base.Start();
         _timeBetweenAttacks = 3f;
+        Type = EnemyType.Vampire;
     }
 
     protected override void Attacking()
