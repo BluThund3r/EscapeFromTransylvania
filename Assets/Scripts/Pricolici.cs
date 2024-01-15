@@ -9,6 +9,8 @@ public class Pricolici : EnemyController
     public float DealtDamage = 10f;
     private float animationTime = 0.5f;
 
+    [SerializeField] AudioSource attackSound;
+
     public Transform manutaTransform;
     private new void Start() {
         base.Start();
@@ -27,6 +29,7 @@ public class Pricolici : EnemyController
     private void StartAttackAnimation() {
         _alreadyAttacked = true;
         StartCoroutine(StartAttack());
+        attackSound.Play();
     }
 
     private IEnumerator StartAttack() {
