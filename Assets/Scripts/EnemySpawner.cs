@@ -7,9 +7,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform _enemyPrefab;
     [SerializeField] private float _spawnDelay = 0.5f;
     [SerializeField] private float _spawnRadius = 10f;  
-    [SerializeField] public int _spawnCount = 5;
+    [SerializeField] private int _spawnCount = 5;
     private bool _alreadySpawned = false;
-    public EnemyType EnemyType;
 
     private IEnumerator SpawnEnemies() {
         _alreadySpawned = true;
@@ -20,13 +19,12 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(_spawnDelay);
         }
         yield return null;
-
-        Destroy(gameObject); // uncomment this line to destroy the spawner after spawning enemies
     }
 
     private void OnTriggerEnter(Collider other) {
         if(!_alreadySpawned && other.CompareTag("Player")) {
             StartCoroutine(SpawnEnemies());
+            Debug.Log("Player entered trigger");
         }
     }
 }

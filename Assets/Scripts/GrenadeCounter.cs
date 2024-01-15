@@ -14,7 +14,7 @@ public class GrenadeCounter : MonoBehaviour
     private float focusedX;
     private float unfocusedX;
 
-    private void Start() {
+    private void Awake() {
         focusedX = transform.position.x;
         unfocusedX = focusedX - (1f - UnfocusScale.x) * focusedX;
     }

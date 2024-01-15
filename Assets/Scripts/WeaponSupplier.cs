@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,28 +9,21 @@ public class WeaponSupplier : MonoBehaviour
     public int MaxBulletsLoaded;
     public int BulletsLoaded;
     public int BulletsMagazine;
+    public GameObject WeaponPrefab;
     public float RotationSpeed = 100f;
     public float BobbingSpeed = 1f;
     public float Amplitude = 0.25f;
     private Coroutine animationCoroutine;
-    public float initialY;
+    private float initialY;
 
     private void Start() {
         initialY = transform.localPosition.y;
         animationCoroutine = StartCoroutine(StartAnimation());
     }
 
-    public void LoadData(WeaponSupplierData weaponSupplierData) {
-        MaxBulletsMagazine = weaponSupplierData.maxBulletsMagazine;
-        MaxBulletsLoaded = weaponSupplierData.maxBulletsLoaded;
-        BulletsLoaded = weaponSupplierData.bulletsLoaded;
-        BulletsMagazine = weaponSupplierData.bulletsMagazine;
-        initialY = weaponSupplierData.initialY;
-    }
-
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Player") && other.GetComponent<Player>()
-            .PickUpWeapon(MaxBulletsLoaded, MaxBulletsMagazine, BulletsLoaded, BulletsMagazine)) {
+            .PickUpWeapon(WeaponPrefab, MaxBulletsLoaded, MaxBulletsMagazine, BulletsLoaded, BulletsMagazine)) {
             StopCoroutine(animationCoroutine);
             Destroy(gameObject);
         }
@@ -44,17 +36,5 @@ public class WeaponSupplier : MonoBehaviour
             transform.localPosition = new Vector3(transform.localPosition.x, newY, transform.localPosition.z);
             yield return null;
         }
-    }
-
-    public WeaponSupplierData GetData()
-    {
-        return new WeaponSupplierData(
-            transform.position,
-            initialY,
-            MaxBulletsMagazine,
-            MaxBulletsLoaded,
-            BulletsLoaded,
-            BulletsMagazine
-        );
     }
 }

@@ -8,15 +8,11 @@ public class GrenadeSupplier : MonoBehaviour
     public float BobbingSpeed = 5f;
     public float Amplitude = 0.25f;
     private Coroutine animationCoroutine;
-    public float initialY;
+    private float initialY;
 
     private void Start() {
         initialY = transform.localPosition.y;
         animationCoroutine = StartCoroutine(StartAnimation());
-    }
-
-    public void LoadData(GrenadeSupplierData grenadeSupplierData) {
-        initialY = grenadeSupplierData.initialY;
     }
 
     private void OnTriggerEnter(Collider other) {

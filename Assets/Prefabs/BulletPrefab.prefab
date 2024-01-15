@@ -148,4 +148,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 3
   projectileSpeed: 50
-  fireSound: {fileID: 0}

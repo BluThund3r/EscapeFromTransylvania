@@ -7,11 +7,6 @@ TagManager:
   - Weapon
   - Harmful
   - Enemy
-  - EnemySpawner
-  - Camera
-  - EscapingArea
-  - GrenadeSupplier
-  - WeaponSupplier
   layers:
   - Default
   - TransparentFX

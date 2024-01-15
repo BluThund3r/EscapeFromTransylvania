@@ -23,8 +23,7 @@ public class EnemyCursor : MonoBehaviour
 
     void Update(){
         RaycastHit hit;
-        Camera myCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
