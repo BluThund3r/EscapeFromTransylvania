@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "EscapeFromTransylvania.sln"
+    "dotnet.defaultSolution": "EscapeFromTransylvania-0824d3435027a17baf99fbe21a965d13c08c321f.sln"
 }
